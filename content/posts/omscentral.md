@@ -2,7 +2,6 @@
 title: "ジョージア工科大学 コンピューターサイエンス修士課程を振り返って"
 date: 2023-04-23T16:13:42+09:00
 draft: false
-categories: "idea"
 tags: ["omscs"]
 ---
 

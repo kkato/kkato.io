@@ -1,6 +1,7 @@
 ---
 title: "Talks"
-date: 2023-03-18T17:23:25+09:00
+ShowBreadCrumbs: false
+hidemeta: true
 draft: false
 ---
 

@@ -2,7 +2,6 @@
 title: "ジョージア工科大学 コンピューターサイエンス修士課程への出願方法"
 date: 2023-03-18T18:12:44+09:00
 draft: false
-categories: "idea"
 tags: ["omscs"]
 ---
 
