@@ -74,6 +74,7 @@ params:
     Title: "kkato.dev"
     Content: "Hi there \U0001F44B
 
+    
     Welcome to my website!"
 
   socialIcons:
@@ -121,7 +122,7 @@ menu:
       weight: 40
     #- identifier: works
     #  name: Works
-    #  url: https://kkato.github.io
+    #  url: /works/
     #  weight: 50
     - identifier: about
       name: About

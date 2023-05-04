@@ -1,6 +1,6 @@
 ---
 title: "kubesprayでk8sクラスタを構築する"
-date: 2023-04-10T18:05:06+09:00
+date: 2023-04-23T16:13:42+09:00
 draft: false
 tags: ["kubernetes"]
 ---

@@ -1,10 +1,10 @@
 ---
+title: "Ken Kato"
 ShowBreadCrumbs: false
 hidemeta: true
 draft: false
 ---
 
-# Ken Kato
 Hi! My name is Ken☀️ \
 I am a database engineer from Japan. I am currently working on PostgreSQL on kubernetes. I love OSS and I am interested in contributing to them.
 
@@ -14,7 +14,19 @@ I am a database engineer from Japan. I am currently working on PostgreSQL on kub
 - Providing PostgreSQL technical support for the mission critical projects.
 - Contributing to PostgreSQL community: contributing to upstream PostgreSQL developments, talking at the PostgreSQL related conferences.
 
-## OSS Contribution
-### PostgreSQL
-- Contributing to upstream development; add functions, add tab completions, fix documentations \
-[v15 Release Note](https://www.postgresql.org/docs/release/15.0/)
+
+## Education
+- Master of Science in Computer Science from Gerogia Institute of Technology
+- Bachelor of Science in Physics from Queen's University
+
+## Skill
+- Linux
+- PostgreSQL
+- Kubernetes
+- Prometheus・Alertmanager・Grafana・Grafana Loki
+
+## Certificate
+- IPA Fundamental Information Technology Engineer
+- LinuC Level 2
+- OSS-DB Gold
+- AWS Solutions Architect Associate
