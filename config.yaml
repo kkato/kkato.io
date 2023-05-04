@@ -8,6 +8,8 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+googleAnalytics: G-LN8D5NDXJ6
+
 minify:
   disableXML: true
   minifyOutput: true
@@ -26,10 +28,10 @@ params:
 
   ShowReadingTime: false
   ShowShareButtons: false
-  ShowPostNavLinks: true
+  ShowPostNavLinks: false
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: false
-  ShowWordCount: true
+  ShowWordCount: false
   ShowRssButtonInSectionTermList: true
   UseHugoToc: true
   disableSpecial1stPost: false
@@ -82,10 +84,6 @@ params:
       url: "https://github.com/kkato/"
     - name: linkedin
       url: "https://www.linkedin.com/in/ken-kato/"
-
-  analytics:
-    google:
-      SiteVerificationTag: "G-LN8D5NDXJ6"
 
   cover:
     hidden: true # hide everywhere but not in structured data
