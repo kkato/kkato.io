@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Piでk8sクラスタを構築する"
 date: 2023-05-01T10:07:31+09:00
-draft: true
+draft: false
 tags: ["kubernetes", "raspi"]
 ---
 
@@ -133,52 +133,54 @@ To                         Action      From
 ### コンテナランタイムのインストール
 コンテナランタイムとはkubernetesノード上のコンテナとコンテナイメージを管理するためのソフトウェアです。
 
-2023年5月現在では、containeredやCRI-Oなどがコンテナランタイムとしてサポートされています。
+2023年5月現在では、containeredやCRI-Oなどがコンテナランタイムとしてサポートされています。今回はcontainerdをインストールしようと思います。
 > Kubernetes supports container runtimes such as containerd, CRI-O, and any other implementation of the Kubernetes CRI (Container Runtime Interface).
 
+まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod感通信のために必要です。
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
-```
 
-```
 sudo modprobe overlay
 sudo modprobe br_netfilter
 ```
 
+続いて、ネットワーク周りのカーネルパラメータを設定します。以下を設定することにより、iptablesを使用してブリッジのトラフィック制御が可能になります。
 ```
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
-```
 
-```
 sudo sysctl --system
 ```
 
+最後にcontainerdをインストールします。
 ```
 sudo apt install containerd -y
 ```
 
 ### kubeadm, kubelet, kubectlのインストール
-
+aptのパッケージ一覧を更新し、Kubernetesのaptリポジトリを利用するのに必要なパッケージをインストールします。
 ```
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
 
+Google Cloudの公開鍵をダウンロードします。
 ```
 sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 ```
 
+Kubernetesのaptリポジトリを追加します。
 ```
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
+aptのパッケージ一覧を更新し、kubelet、kubeadm、kubectlをインストールします。そしてバージョンを固定します。
 ```
 sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
@@ -189,6 +191,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ### Control Planeノードのデプロイ
 
+`kubeadm init`コマンドを使ってControl Planeノードをデプロイします。
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ---
@@ -211,17 +214,17 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 ```
 
+### Workerノードのデプロイ
+
+`kubeadm join`コマンドを使って、Workerノードをデプロイします。
 ```
 sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 	--discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
 ```
 
-
-### Workerノードのデプロイ
-
-
-
 ## おわりに
+
+kubeadmを使って、Raspberry Piにkubernetesクラスタを構築しました。kubesprayよりも大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
 
 ## 参考
 - [kubeadmのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)

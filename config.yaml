@@ -120,7 +120,7 @@ menu:
       weight: 40
     #- identifier: works
     #  name: Works
-    #  url: /works/
+    #  url: https://kkato.github.io/
     #  weight: 50
     - identifier: about
       name: About

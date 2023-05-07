@@ -10,7 +10,7 @@ I am a database engineer from Japan. I am currently working on PostgreSQL on kub
 
 ## Work Experience
 ### Database Engineer @ NTT data (2021/01 - Present)
-- Developing PostgreSQL as a Service on kubernetes and in charge of monitoring/logging infrastructure using Prometheus, Alertmanager, Grafana, Grafana Loki, Thanos.
+- Developing PostgreSQL as a Service on kubernetes and in charge of monitoring & logging infrastructure using Prometheus, Alertmanager, Grafana, Grafana Loki, Thanos.
 - Providing PostgreSQL technical support for the mission critical projects.
 - Contributing to PostgreSQL community: contributing to upstream PostgreSQL developments, talking at the PostgreSQL related conferences.
 
@@ -20,7 +20,6 @@ I am a database engineer from Japan. I am currently working on PostgreSQL on kub
 - Bachelor of Science in Physics from Queen's University
 
 ## Skill
-- Linux
 - PostgreSQL
 - Kubernetes
 - Prometheus・Alertmanager・Grafana・Grafana Loki
