@@ -1,5 +1,5 @@
 ---
-title: "Raspberry Piでk8sクラスタを構築する"
+title: "Raspberry Pi上にk8sクラスタを構築する"
 date: 2023-05-01T10:07:31+09:00
 draft: false
 tags: ["kubernetes", "raspi"]
@@ -224,7 +224,7 @@ sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 
 ## おわりに
 
-kubeadmを使って、Raspberry Piにkubernetesクラスタを構築しました。kubesprayよりも大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
+kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。kubesprayよりも大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
 
 ## 参考
 - [kubeadmのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
