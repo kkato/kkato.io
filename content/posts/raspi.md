@@ -136,7 +136,7 @@ To                         Action      From
 2023年5月現在では、containeredやCRI-Oなどがコンテナランタイムとしてサポートされています。今回はcontainerdをインストールしようと思います。
 > Kubernetes supports container runtimes such as containerd, CRI-O, and any other implementation of the Kubernetes CRI (Container Runtime Interface).
 
-まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod感通信のために必要です。
+まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod間通信のために必要です。
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
