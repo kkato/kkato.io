@@ -78,7 +78,7 @@ Grade distribution:
 - Participation (Ed Discussionでの発言、Participation Quizなど): 3%
 
 ### CS6250 Computer Networks
-このコースでは、TCPやUDPの基礎知識や、ルーティング・プロトコル(経路制御アルゴリズム、RIP,OSPF、BGP)、ルーターの仕組み、Software Defined Networkingなどについて学びます。課題はSpanning Tree Protocol、Distance Vector Routing、SDN Firewallなどを実際にPythonで実装します。授業のビデオは棒読みで分量も多く眠気を誘ってきますが、課題の手順はかなり明確に説明されているので良かったです。マスタリングTCP/IPを読んで補足的に勉強しました。
+このコースでは、TCPやUDPの基礎知識や、ルーティング・プロトコル(経路制御アルゴリズム、RIP、OSPF、BGP)、ルーターの仕組み、Software Defined Networkingなどについて学びます。課題はSpanning Tree Protocol、Distance Vector Routing、SDN Firewallなどを実際にPythonで実装します。授業のビデオは棒読みで分量も多く眠気を誘ってきますが、課題の手順はかなり明確に説明されているので良かったです。マスタリングTCP/IPを読んで補足的に勉強しました。
 
 Grade Distribution:
 - Assignments(x5): 66%
@@ -111,7 +111,7 @@ Grade distribution:
 - Participation: 5%
 - Projects(x3): 45%
 - Midterm Exam: 25%
-- Final Exam: 25%
+- Final Exam: 25% \
 ※Curveありです。85%以上でA、65%以上でBくらいだと思います。
 
 ### CS6262 Network Security
@@ -131,7 +131,7 @@ Grade distribution:
 - Polls: 4%
 - Coding Projects(x3): 9%.
 - Logistic quizzes: 3%.
-- Exams(best 3 out of 4): 72%
+- Exams(best 3 out of 4): 72% \
 ※Curveありです。85%以上でA、65%以上でBくらいだと思います。
 
 ### CS9903-O13 Quantum Computing
