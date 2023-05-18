@@ -5,8 +5,8 @@ hidemeta: true
 draft: false
 ---
 
-Hi! My name is Ken☀️ \
-I am a database engineer from Japan. I am currently working on PostgreSQL on kubernetes. I love OSS and I am interested in contributing to them.
+Hi! My name is Ken 	&#x1F331; \
+I am a database engineer from Japan. I am currently working on PostgreSQL on kubernetes. I interested in contributing to OSS as well as using it.
 
 ## Work Experience
 ### Database Engineer @ NTT data (2021/01 - Present)
