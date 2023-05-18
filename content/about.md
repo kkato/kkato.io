@@ -25,7 +25,4 @@ I am a database engineer from Japan. I am currently working on PostgreSQL on kub
 - Prometheus・Alertmanager・Grafana・Grafana Loki
 
 ## Certificate
-- IPA Fundamental Information Technology Engineer
-- LinuC Level 2
-- OSS-DB Gold
 - AWS Solutions Architect Associate
