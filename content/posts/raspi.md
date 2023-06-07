@@ -8,6 +8,7 @@ tags: ["kubernetes", "raspi"]
 ## はじめに
 
 最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。
+Control Planeノードx1 Workerノードx3の構成です。
 
 ![](/images/raspi/raspi_cluster.jpg)
 
@@ -82,11 +83,17 @@ $ arp -an
 ```
 
 ## kubeadmのインストール
+以下の手順を参考にします。
+- [kubeadmを使用したクラスターの作成](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
+- [コンテナランタイム](https://kubernetes.io/ja/docs/setup/production-environment/container-runtimes/)
+- [kubeadmのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
 ### ポートの開放
 kubernetesのコンポーネントが互いに通信するために、[これらのポート](https://kubernetes.io/ja/docs/reference/networking/ports-and-protocols/)を開く必要があります。
 
-ufwコマンドを使って、コントロールプレーンノードのポートを開放します。
+ufwコマンドを使って、Control Planeノードのポートを開放します。
+※Control Planeノードにssh接続し、以下のコマンドを実行します。
+
 ```
 $ sudo ufw enable
 $ sudo ufw allow 22/tcp
@@ -111,7 +118,8 @@ To                         Action      From
 10257/tcp                  ALLOW       Anywhere                                  
 ```
 
-続いて各ワーカーノードのポートを開放します。
+続いて各Workerノードのポートを開放します。
+※各Workerノードにssh接続し、以下のコマンドを実行します。
 ```
 $ sudo ufw enable
 $ sudo ufw allow 22/tcp
@@ -136,6 +144,8 @@ To                         Action      From
 2023年5月現在では、containeredやCRI-Oなどがコンテナランタイムとしてサポートされています。今回はcontainerdをインストールしようと思います。
 > Kubernetes supports container runtimes such as containerd, CRI-O, and any other implementation of the Kubernetes CRI (Container Runtime Interface).
 
+※各ノードにssh接続し、以下のコマンドを実行します。
+
 まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod間通信のために必要です。
 ```
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
@@ -159,11 +169,14 @@ sudo sysctl --system
 ```
 
 最後にcontainerdをインストールします。
+※各ノードにssh接続し、以下のコマンドを実行します。
 ```
 sudo apt install containerd -y
 ```
 
 ### kubeadm, kubelet, kubectlのインストール
+※各ノードにssh接続し、以下のコマンドを実行します。
+
 aptのパッケージ一覧を更新し、Kubernetesのaptリポジトリを利用するのに必要なパッケージをインストールします。
 ```
 sudo apt-get update
@@ -188,12 +201,16 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 ## kubernetesクラスタの作成
+以下の手順を参考にします。
+- [kubeadmを使用したクラスターの作成](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
+- [kubectlのインストールおよびセットアップ](https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/)
+
 
 ### Control Planeノードのデプロイ
-
 `kubeadm init`コマンドを使ってControl Planeノードをデプロイします。
-オプションについては[公式ドキュメント](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)に記載があります。
 ネットワークアドオンにCalicoを使うことにしたので、[Calicoのドキュメント](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#create-a-single-host-kubernetes-cluster)に記載されている通り、`--pod-network-cidr=192.168.0.0/16`を指定します。
+
+※Control Planeノードにssh接続し、以下のコマンドを実行します。
 
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
@@ -218,18 +235,62 @@ Then you can join any number of worker nodes by running the following on each as
 ```
 
 ### Workerノードのデプロイ
-
 `kubeadm join`コマンドを使って、Workerノードをデプロイします。
+
+※Workerノードにssh接続し、以下のコマンドを実行します。
 ```
 sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 	--discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
 ```
 
+### kubectlのインストール
+※手元のPCで以下のコマンドを実行してください。
+
+kubectlのバイナリをダウンロードします。
+```
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+バイナリを実行可能にします。
+```
+chmod +x ./kubectl
+```
+
+kubectlをPATHの中に移動します。
+```
+sudo mv ./kubectl /usr/local/bin/kubectl
+```
+
+kubectlのタブ補完を設定します。
+```
+sudo dnf install bash-completion
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+kubectl completion bash >/etc/bash_completion.d/kubectl
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -F __start_kubectl k' >>~/.bashrc
+```
+
+### kubeconfigの設定
+※手元のPCで以下のコマンドを実行してください。
+
+kubeadm initコマンド実行後に表示された説明に沿って、kubeconfigを設定します。
+```
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+scp raspi01:/etc/kubernetes/admin.conf $HOME/.kube/config
+
+```
+
+### 接続確認
+※手元のPCで以下のコマンドを実行してください。
+
+k8sクラスタに接続できることを確認します。
+```
+(base) kkato@ubuntu:~$ k get pods
+No resources found in default namespace.
+
+```
+
 ## おわりに
 
 kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。kubesprayよりも手順が多く大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
-
-## 参考
-- [kubeadmのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
-- [コンテナランタイム](https://kubernetes.io/ja/docs/setup/production-environment/container-runtimes/)
-- [kubeadmを使用したクラスターの作成](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
