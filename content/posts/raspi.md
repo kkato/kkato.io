@@ -192,6 +192,9 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ### Control Planeノードのデプロイ
 
 `kubeadm init`コマンドを使ってControl Planeノードをデプロイします。
+オプションについては[公式ドキュメント](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)に記載があります。
+ネットワークアドオンにCalicoを使うことにしたので、[Calicoのドキュメント](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#create-a-single-host-kubernetes-cluster)に記載されている通り、`--pod-network-cidr=192.168.0.0/16`を指定します。
+
 ```
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ---
@@ -224,7 +227,7 @@ sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 
 ## おわりに
 
-kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。kubesprayよりも大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
+kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。kubesprayよりも手順が多く大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
 
 ## 参考
 - [kubeadmのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
