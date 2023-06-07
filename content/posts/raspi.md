@@ -127,6 +127,7 @@ $ sudo ufw allow 30000:32767/tcp
 ```
 ポートが開放されたことを確認します。
 ```
+# 各Workerノードで実行
 $ sudo ufw status
 Status: active
 
@@ -146,7 +147,7 @@ To                         Action      From
 まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod間通信のために必要です。
 ```
 # 各ノードで実行
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+$ cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
@@ -157,18 +158,20 @@ sudo modprobe br_netfilter
 
 続いて、ネットワーク周りのカーネルパラメータを設定します。以下を設定することにより、iptablesを使用してブリッジのトラフィック制御が可能になります。
 ```
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+# 各ノードで実行
+$ cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
 
-sudo sysctl --system
+$ sudo sysctl --system
 ```
 
 最後にcontainerdをインストールします。
 ```
-sudo apt install containerd -y
+# 各ノードで実行
+$ sudo apt install containerd -y
 ```
 
 ### kubeadm, kubelet, kubectlのインストール
@@ -182,19 +185,22 @@ sudo apt-get install -y apt-transport-https ca-certificates curl
 
 Google Cloudの公開鍵をダウンロードします。
 ```
-sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+# 各ノードで実行
+$ sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 ```
 
 Kubernetesのaptリポジトリを追加します。
 ```
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# 各ノードで実行
+$ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 aptのパッケージ一覧を更新し、kubelet、kubeadm、kubectlをインストールします。そしてバージョンを固定します。
 ```
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
+# 各ノードで実行
+$ sudo apt-get update
+$ sudo apt-get install -y kubelet kubeadm kubectl
+$ sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 ## kubernetesクラスタの作成
@@ -210,7 +216,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ```
 # Control Planeノードで実行
-sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+$ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ---
 Your Kubernetes control-plane has initialized successfully!
 
@@ -236,8 +242,8 @@ Then you can join any number of worker nodes by running the following on each as
 
 ```
 # 各Workerノードで実行
-sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
-	--discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
+$ sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
+	  --discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
 ```
 
 ### kubectlのインストール
@@ -250,21 +256,24 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 
 バイナリを実行可能にします。
 ```
-chmod +x ./kubectl
+# 手元のPCで実行
+$ chmod +x ./kubectl
 ```
 
 kubectlをPATHの中に移動します。
 ```
-sudo mv ./kubectl /usr/local/bin/kubectl
+# 手元のPCで実行
+$ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
 kubectlのタブ補完を設定します。
 ```
-sudo dnf install bash-completion
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-kubectl completion bash >/etc/bash_completion.d/kubectl
-echo 'alias k=kubectl' >>~/.bashrc
-echo 'complete -F __start_kubectl k' >>~/.bashrc
+# 手元のPCで実行
+$ sudo dnf install bash-completion
+$ echo 'source <(kubectl completion bash)' >>~/.bashrc
+$ kubectl completion bash >/etc/bash_completion.d/kubectl
+$ echo 'alias k=kubectl' >>~/.bashrc
+$ echo 'complete -F __start_kubectl k' >>~/.bashrc
 ```
 
 ### kubeconfigの設定
@@ -272,19 +281,17 @@ echo 'complete -F __start_kubectl k' >>~/.bashrc
 kubeadm initコマンド実行後に表示された説明に沿って、kubeconfigを設定します。
 ```
 # 手元のPCで実行
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-mkdir -p $HOME/.kube
-scp raspi01:/etc/kubernetes/admin.conf $HOME/.kube/config
-
+$ mkdir -p $HOME/.kube
+$ scp raspi01:/etc/kubernetes/admin.conf $HOME/.kube/config
+$ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 ### 接続確認
 k8sクラスタに接続できることを確認します。
 ```
 # 手元のPCで実行
-(base) kkato@ubuntu:~$ k get pods
+$ k get pods
 No resources found in default namespace.
-
 ```
 
 ## おわりに
