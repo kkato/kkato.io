@@ -6,10 +6,10 @@ draft: false
 ---
 
 Hi! My name is Ken 	&#x1F331; \
-I am a database engineer from Japan. I am currently working on PostgreSQL on kubernetes and in charge of monitoring, aleriting, and logging infrastructure.
+I am an IT engineer from Japan. I am currently working on PostgreSQL on kubernetes and in charge of monitoring, aleriting, and logging infrastructure.
 
 ## Work Experience
-### Database Engineer @ NTT data (2021/01 - Present)
+### IT Specialist @ NTT data (2021/01 - Present)
 - Designing and building monitoring, alerting, and logging infrastructure using Prometheus, Alertmanager, Grafana, Thanos, Grafana Loki
 - PostgreSQL technical support
 
