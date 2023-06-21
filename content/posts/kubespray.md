@@ -1,6 +1,6 @@
 ---
 title: "kubesprayでk8sクラスタを構築する"
-date: 2023-04-23T16:13:42+09:00
+date: 2023-05-01T10:07:31+09:00
 draft: false
 tags: ["kubernetes"]
 ---
@@ -202,7 +202,7 @@ nuc04   Ready    <none>          4m7s    v1.25.6
 ```
 
 ## おわりに
-kubesprayを使ってk8sクラスタを構築しました。想像以上に簡単にk8sクラスタを構築できるので、ぜひ一度試してみてください。
+kubesprayを使ってk8sクラスタを構築しました。kubeadmよりも簡単にk8sクラスタを構築できました。
 
 # 参考
 - [GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster](https://github.com/kubernetes-sigs/kubespray)

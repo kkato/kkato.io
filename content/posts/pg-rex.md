@@ -54,7 +54,7 @@ virsh domiflist pgrex01
 virsh net-edit s-lan
 ```
 ![](https://hackmd.io/_uploads/HJd6wu3Nn.png)
-
+chmod 600 authorized_keys
 
 
 仮想ネットワークを起動する。

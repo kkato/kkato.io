@@ -1,6 +1,6 @@
 ---
 title: "Raspberry Pi上にk8sクラスタを構築する"
-date: 2023-05-01T10:07:31+09:00
+date: 2023-04-23T16:13:42+09:00
 draft: false
 tags: ["kubernetes", "raspi"]
 ---
@@ -302,4 +302,4 @@ No resources found in default namespace.
 
 ## おわりに
 
-kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。kubesprayよりも手順が多く大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
+kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。手順が多く大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。
