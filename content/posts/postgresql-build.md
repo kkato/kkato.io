@@ -8,12 +8,12 @@ tags: ["postgresql"]
 ## はじめに
 
 今回はPostgreSQLをソースからビルドする方法をご紹介します。 \
-参考: https://www.postgresql.jp/document/15/html/install-procedure.html
+参考: https://www.postgresql.jp/document/15/html/installation.html
 
-## 準備
+##　必要条件
 
 予め必要なライブラリをインストールします。\
-RHELとUbuntuに必要なライブラリを紹介します。
+(RHELとUbuntuに必要なライブラリを紹介します。)
 
 ### RHELに必要なライブラリ
 
@@ -23,7 +23,7 @@ sudo dnf install git gcc make bison flex readline readline-devel zlib-devel
 ```
 
 TAPテスト(PostgreSQLのクライアントツールなどを対象とする追加テスト)に必要なライブラリをインストールします。
-```build-essential libreadline-dev zlib1g-dev
+```
 sudo dnf install perl-CPAN
 sudo cpan -i IPC::Run Test::Simple Time::HiRes Test::Harness
 ```
@@ -34,7 +34,7 @@ sudo cpan -i IPC::Run Test::Simple Time::HiRes Test::Harness
 sudo apt install build-essential libreadline-dev zlib1g-dev libpc-run-perl bison flex libxml2-utils xsltproc docbook-to-man
 ```
 
-## ビルド手順
+## ビルド
 
 PostgreSQLのgitリポジトリをクローンします。
 ```

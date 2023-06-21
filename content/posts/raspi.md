@@ -211,12 +211,10 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 
 ### Control Planeノードのデプロイ
 `kubeadm init`コマンドを使ってControl Planeノードをデプロイします。
-ネットワークアドオンにCalicoを使うことにしたので、[Calicoのドキュメント](https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#create-a-single-host-kubernetes-cluster)に記載されている通り、`--pod-network-cidr=192.168.0.0/16`を指定します。
-
 
 ```
 # Control Planeノードで実行
-$ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+$ sudo kubeadm init
 ---
 Your Kubernetes control-plane has initialized successfully!
 
@@ -237,12 +235,27 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 Then you can join any number of worker nodes by running the following on each as root:
 ```
 
+### アドオンのインストール
+
+CNIプラグインであるFlannelをインストールします。\
+https://github.com/flannel-io/flannel#deploying-flannel-manually
+```
+# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+namespace/kube-flannel created
+serviceaccount/flannel created
+clusterrole.rbac.authorization.k8s.io/flannel created
+clusterrolebinding.rbac.authorization.k8s.io/flannel created
+configmap/kube-flannel-cfg created
+daemonset.apps/kube-flannel-ds created
+
+```
+
 ### Workerノードのデプロイ
 `kubeadm join`コマンドを使って、Workerノードをデプロイします。
 
 ```
 # 各Workerノードで実行
-$ sudo kubeadm join 192.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
+$ sudo kubeadm join 10.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 	  --discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
 ```
 
