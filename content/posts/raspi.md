@@ -240,14 +240,7 @@ Then you can join any number of worker nodes by running the following on each as
 CNIプラグインであるFlannelをインストールします。\
 https://github.com/flannel-io/flannel#deploying-flannel-manually
 ```
-# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-namespace/kube-flannel created
-serviceaccount/flannel created
-clusterrole.rbac.authorization.k8s.io/flannel created
-clusterrolebinding.rbac.authorization.k8s.io/flannel created
-configmap/kube-flannel-cfg created
-daemonset.apps/kube-flannel-ds created
-
+$ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 ```
 
 ### Workerノードのデプロイ
