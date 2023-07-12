@@ -27,7 +27,7 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 authorized_keys
  ```
 
-sshdの設定で、公開鍵認証を有効化し、パスワード認証を無効化します。
+公開鍵認証を有効化し、パスワード認証を無効化します。
 
 ```
 sudo vi /etc/ssh/sshd_config
