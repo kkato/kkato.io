@@ -5,8 +5,6 @@ draft: false
 tags: ["kubernetes", "raspi"]
 ---
 
-## はじめに
-
 最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。
 Control Planeノードx1 Workerノードx3の構成です。
 
@@ -299,7 +297,3 @@ k8sクラスタに接続できることを確認します。
 $ k get pods
 No resources found in default namespace.
 ```
-
-## おわりに
-
-kubeadmを使って、Raspberry Pi上にkubernetesクラスタを構築しました。手順が多く大変でしたが、kubernetesに必要なコンポーネント・設定などを一通り確認することができ、勉強になりました。

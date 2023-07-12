@@ -5,8 +5,6 @@ draft: false
 tags: ["kubernetes"]
 ---
 
-## はじめに
-
 k8s構築ツールはいろいろありますが、公式ドキュメントでは以下が紹介されています。
 
 - [学習環境](https://kubernetes.io/ja/docs/setup/learning-environment/)
@@ -198,11 +196,7 @@ nuc01   Ready    control-plane   5m23s   v1.25.6
 nuc02   Ready    <none>          4m8s    v1.25.6
 nuc03   Ready    <none>          4m20s   v1.25.6
 nuc04   Ready    <none>          4m7s    v1.25.6
-
 ```
-
-## おわりに
-kubesprayを使ってk8sクラスタを構築しました。kubeadmよりも簡単にk8sクラスタを構築できました。
 
 # 参考
 - [GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster](https://github.com/kubernetes-sigs/kubespray)

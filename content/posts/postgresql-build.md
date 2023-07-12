@@ -1,37 +1,52 @@
 ---
 title: "PostgreSQLをソースコードからビルドする"
-date: 2023-06-13T19:17:52+09:00
-draft: true
+date: 2023-06-13T19:32:35+09:00
+draft: false
 tags: ["postgresql"]
 ---
 
-## はじめに
+今回はPostgreSQLをソースからビルドする方法をご紹介します。
 
-今回はPostgreSQLをソースからビルドする方法をご紹介します。 \
-参考: https://www.postgresql.jp/document/15/html/installation.html
+予め必要なライブラリをインストールします。
 
-##　必要条件
+PostgreSQLのビルドに必要なライブラリ:
+- GNU make
+- Cコンパイラ
+- GNU Readlineライブラリ
+- zlib
+- Flex
+- Bison
 
-予め必要なライブラリをインストールします。\
-(RHELとUbuntuに必要なライブラリを紹介します。)
+TAPテスト(PostgreSQLのクライアントツールなどを対象とする追加テスト)に必要なPerlモジュール:
+- IPC::Run
+- Test::Simple
+- Time::HiRes
+- Test::Harness
 
-### RHELに必要なライブラリ
+### RHELの場合
 
-ソースの入手、コンパイルに必要なライブラリをインストールします。
+PostgreSQLのビルドに必要なライブラリをインストールします。
 ```
-sudo dnf install git gcc make bison flex readline readline-devel zlib-devel
+sudo dnf install make gcc readline readline-devel zlib-devel bison flex
 ```
 
-TAPテスト(PostgreSQLのクライアントツールなどを対象とする追加テスト)に必要なライブラリをインストールします。
+TAPテストに必要なライブラリをインストールします。
 ```
 sudo dnf install perl-CPAN
 sudo cpan -i IPC::Run Test::Simple Time::HiRes Test::Harness
 ```
 
-### Ubuntuに必要なライブラリ
+ドキュメントを生成するためのライブラリは[こちら](https://www.postgresql.jp/document/15/html/docguide-toolsets.html)です。
 
+### Ubuntuの場合
+PostgreSQLのビルドに必要なライブラリをインストールします。
 ```
-sudo apt install build-essential libreadline-dev zlib1g-dev libpc-run-perl bison flex libxml2-utils xsltproc docbook-to-man
+sudo apt install make gcc libreadline-dev zlib1g-dev bison flex
+```
+
+TAPテストに必要なライブラリをインストールします。
+```
+sudoi apt install libpc-run-perl libtest-simple-perl libtime-hires-perl libtest-harness-perl
 ```
 
 ## ビルド
@@ -39,14 +54,17 @@ sudo apt install build-essential libreadline-dev zlib1g-dev libpc-run-perl bison
 PostgreSQLのgitリポジトリをクローンします。
 ```
 git clone git://git.postgresql.org/git/postgresql.git
+cd postgresql
 ```
 
 PostgreSQLをコンパイルします。
+configureのオプションについては[こちら](https://www.postgresql.jp/document/15/html/install-procedure.html#CONFIGURE-OPTIONS)を参考にしてください。
 ```
 ./configure --enable-debug --enable-cassert --enable-tap-tests --prefix=$HOME/postgres/pgsql-master CFLAGS=-O0
 make -j 4
 make install
 ```
+
 
 PostgreSQLのリグレッションテストを実行します。
 ```

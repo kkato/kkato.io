@@ -21,4 +21,5 @@ I am an IT engineer from Japan. I am currently working on PostgreSQL on kubernet
 - Prometheus・Alertmanager・Grafana・Grafana Loki
 
 ## Certificate
-- AWS Solutions Architect Associate
+- Certified Kubernetes Administrator
+- AWS Solutions Architect Professional
