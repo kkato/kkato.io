@@ -46,7 +46,7 @@ sudo apt install make gcc libreadline-dev zlib1g-dev bison flex
 
 TAPテストに必要なライブラリをインストールします。
 ```
-sudoi apt install libpc-run-perl libtest-simple-perl libtime-hires-perl libtest-harness-perl
+sudo apt install libpc-run-perl libtest-simple-perl libtime-hires-perl libtest-harness-perl
 ```
 
 ## ビルド
