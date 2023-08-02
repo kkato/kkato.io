@@ -1,5 +1,5 @@
 ---
-title: "Nginx"
+title: "Alertmanagerからの通知を試したいとき"
 date: 2023-07-12T13:11:42+09:00
 draft: true
 ---

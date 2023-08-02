@@ -5,21 +5,19 @@ hidemeta: true
 draft: false
 ---
 
-Hi! My name is Ken 	&#x1F331; \
-I am a database engineer from Japan. I am currently working on PostgreSQL on kubernetes and in charge of monitoring, aleriting, and logging infrastructure.
+SIer勤務のITエンジニア
 
-## Work Experience
-- Database Engineer @ NTT data (2021/01 - Present)
+つよつよエンジニアを目指して勉強中
 
-## Education
-- Master of Science in Computer Science @ Gerogia Institute of Technology
-- Bachelor of Science in Physics @ Queen's University
+### 好きなもの
+- ボルダリング
+- テニス
+- サウナ
 
-## Skill
-- PostgreSQL
-- Kubernetes
-- Prometheus・Alertmanager・Grafana・Grafana Loki
-
-## Certificate
-- Certified Kubernetes Administrator
-- AWS Solutions Architect Professional
+### 興味のあること
+- バックエンド開発 (特にGo)
+- パブリッククラウドを用いたインフラの開発、運用、保守
+- Kuberenetesを始めとするクラウドネイティブ技術
+- データベース (特にPostgreSQL, MySQLなどのRDBMS、TiDBなどのNewSQL)
+- ネットワーク
+- OSS開発
