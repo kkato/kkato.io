@@ -18,6 +18,6 @@ SIer勤務のITエンジニア
 - バックエンド開発 (特にGo)
 - パブリッククラウドを用いたインフラの開発・運用・保守
 - Kuberenetesを始めとするクラウドネイティブ技術
-- データベース (特にPostgreSQL, MySQL)
+- データベース (特にPostgreSQL、MySQL)
 - ネットワーク
 - OSS開発
