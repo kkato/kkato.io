@@ -8,7 +8,7 @@ Helm Chartのvaluesを確認する方法をよく忘れてしまうので、備�
 
 ## valuesを確認するまでの流れ
 
-まずはchart repositoriesを追加します。(今回はbitnami/thanosを例にご紹介します。)
+まずはchart repositoriesを追加します。
 ```sh
 helm repo add [NAME] [URL]
 ```
