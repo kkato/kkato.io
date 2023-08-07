@@ -8,7 +8,7 @@ Helm Chartのvaluesを確認する方法をよく忘れてしまうので、備�
 
 ## valuesを確認するまでの流れ
 
-まずはchart repositoryを追加します。
+まずはchartリポジトリを追加します。
 ```sh
 helm repo add [NAME] [URL]
 ```
