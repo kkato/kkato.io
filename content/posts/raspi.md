@@ -38,13 +38,13 @@ $ rpi-imager
 ![](/images/raspi/raspi_imager.png)
 
 microSDカードを差し込み、ディスプレイ(micro HDMI)とキーボード(USB)を接続し、OSの初期設定を行います。初期ユーザー名とパスワードはubuntuです。パッケージを最新にしておきます。
-```
+```sh
 $ sudo spy update
 $ sudo apt upgrade -y
 ```
 
 新しくユーザを作成し、ユーザにsudo権限を付与します。sudoをパスワードなしでできるように追加の設定もします。
-```
+```sh
 $ sudo adduser kkato
 
 $ sudo usermod -aG sudo kkato
@@ -71,7 +71,7 @@ Aterm WG1200HS4というルーターを使っており、[http://aterm.me/](http
 ![](/images/raspi/router.png)
 
 手元のPCからきちんと設定されているか確認します。(111~114がラズパイです。)
-```
+```sh
 $ arp -an
 ? (192.168.10.111) at dc:a6:32:70:52:2a [ether] on wlp0s20f3
 ? (192.168.10.113) at e4:5f:01:e2:56:aa [ether] on wlp0s20f3
@@ -90,7 +90,7 @@ $ arp -an
 kubernetesのコンポーネントが互いに通信するために、[これらのポート](https://kubernetes.io/ja/docs/reference/networking/ports-and-protocols/)を開く必要があります。
 
 ufwコマンドを使って、Control Planeノードのポートを開放します。
-```
+```sh
 # Control Planeノードで実行
 $ sudo ufw enable
 $ sudo ufw allow 22/tcp
@@ -101,7 +101,7 @@ $ sudo ufw allow 10259/tcp
 $ sudo ufw allow 10257/tcp
 ```
 ポートが開放されたことを確認します。
-```
+```sh
 $ sudo ufw status
 Status: active
 
@@ -116,7 +116,7 @@ To                         Action      From
 ```
 
 続いて各Workerノードのポートを開放します。
-```
+```sh
 # 各Workerノードで実行
 $ sudo ufw enable
 $ sudo ufw allow 22/tcp
@@ -124,7 +124,7 @@ $ sudo ufw allow 10250/tcp
 $ sudo ufw allow 30000:32767/tcp
 ```
 ポートが開放されたことを確認します。
-```
+```sh
 # 各Workerノードで実行
 $ sudo ufw status
 Status: active
@@ -143,7 +143,7 @@ To                         Action      From
 > Kubernetes supports container runtimes such as containerd, CRI-O, and any other implementation of the Kubernetes CRI (Container Runtime Interface).
 
 まずはカーネルモジュールを起動時に自動でロードするに設定します。`overlay`はコンテナに必要で、`br_netfilter`はPod間通信のために必要です。
-```
+```sh
 # 各ノードで実行
 $ cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -155,7 +155,7 @@ sudo modprobe br_netfilter
 ```
 
 続いて、ネットワーク周りのカーネルパラメータを設定します。以下を設定することにより、iptablesを使用してブリッジのトラフィック制御が可能になります。
-```
+```sh
 # 各ノードで実行
 $ cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
@@ -167,7 +167,7 @@ $ sudo sysctl --system
 ```
 
 最後にcontainerdをインストールします。
-```
+```sh
 # 各ノードで実行
 $ sudo apt install containerd -y
 ```
@@ -175,26 +175,26 @@ $ sudo apt install containerd -y
 ### kubeadm, kubelet, kubectlのインストール
 
 aptのパッケージ一覧を更新し、Kubernetesのaptリポジトリを利用するのに必要なパッケージをインストールします。
-```
+```sh
 # 各ノードで実行
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl
 ```
 
 Google Cloudの公開鍵をダウンロードします。
-```
+```sh
 # 各ノードで実行
 $ sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
 ```
 
 Kubernetesのaptリポジトリを追加します。
-```
+```sh
 # 各ノードで実行
 $ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 aptのパッケージ一覧を更新し、kubelet、kubeadm、kubectlをインストールします。そしてバージョンを固定します。
-```
+```sh
 # 各ノードで実行
 $ sudo apt-get update
 $ sudo apt-get install -y kubelet kubeadm kubectl
@@ -210,7 +210,7 @@ $ sudo apt-mark hold kubelet kubeadm kubectl
 ### Control Planeノードのデプロイ
 `kubeadm init`コマンドを使ってControl Planeノードをデプロイします。
 
-```
+```sh
 # Control Planeノードで実行
 $ sudo kubeadm init
 ---
@@ -237,14 +237,14 @@ Then you can join any number of worker nodes by running the following on each as
 
 CNIプラグインであるFlannelをインストールします。\
 https://github.com/flannel-io/flannel#deploying-flannel-manually
-```
+```sh
 $ kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 ```
 
 ### Workerノードのデプロイ
 `kubeadm join`コマンドを使って、Workerノードをデプロイします。
 
-```
+```sh
 # 各Workerノードで実行
 $ sudo kubeadm join 10.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 	  --discovery-token-ca-cert-hash sha256:bbcfefdab5e92525d070ff0f7a8de077d72bad39f897193a288486f76462424d
@@ -253,25 +253,25 @@ $ sudo kubeadm join 10.168.10.111:6443 --token s0px1g.7s2e6kwrj5qaiysr \
 ### kubectlのインストール
 
 kubectlのバイナリをダウンロードします。
-```
+```sh
 # 手元のPCで実行
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
 
 バイナリを実行可能にします。
-```
+```sh
 # 手元のPCで実行
 $ chmod +x ./kubectl
 ```
 
 kubectlをPATHの中に移動します。
-```
+```sh
 # 手元のPCで実行
 $ sudo mv ./kubectl /usr/local/bin/kubectl
 ```
 
 kubectlのタブ補完を設定します。
-```
+```sh
 # 手元のPCで実行
 $ sudo dnf install bash-completion
 $ echo 'source <(kubectl completion bash)' >>~/.bashrc
@@ -283,7 +283,7 @@ $ echo 'complete -F __start_kubectl k' >>~/.bashrc
 ### kubeconfigの設定
 
 kubeadm initコマンド実行後に表示された説明に沿って、kubeconfigを設定します。
-```
+```sh
 # 手元のPCで実行
 $ mkdir -p $HOME/.kube
 $ scp raspi01:/etc/kubernetes/admin.conf $HOME/.kube/config
@@ -292,7 +292,7 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ### 接続確認
 k8sクラスタに接続できることを確認します。
-```
+```sh
 # 手元のPCで実行
 $ k get pods
 No resources found in default namespace.

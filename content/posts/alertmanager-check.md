@@ -6,7 +6,7 @@ draft: true
 
 # nginx
 
-```
+```sh
 apiVersion: v1
 kind: ConfigMap
 metadata:
