@@ -6,6 +6,8 @@ draft: false
 
 Helm Chartのvaluesを確認する方法をよく忘れてしまうので、備忘録としてメモを残しておきます。
 
+## valuesを確認するまでの流れ
+
 まずはchart repositoriesを追加します。(今回はbitnami/thanosを例にご紹介します。)
 ```sh
 $ helm repo add bitnami https://charts.bitnami.com/bitnami
