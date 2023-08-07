@@ -82,6 +82,8 @@ metadata:
 
 ### LoadBalancerタイプのServiceを作成する
 
+
+
 ## 参考
 - https://metallb.universe.tf/installation/
 - https://metallb.universe.tf/configuration/

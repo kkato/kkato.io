@@ -10,19 +10,17 @@ Helm Chartのvaluesを確認する方法をよく忘れてしまうので、備�
 
 まずはchart repositoriesを追加します。(今回はbitnami/thanosを例にご紹介します。)
 ```sh
-$ helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add [NAME] [URL]
 ```
 
 次に追加されたリポジトリを確認します。
 ```sh
-$ helm search repo bitnami/thanos
-NAME          	CHART VERSION	APP VERSION	DESCRIPTION                                       
-bitnami/thanos	12.10.1      	0.31.0     	Thanos is a highly available metrics system tha... 
+helm search repo [KEYWORD]
 ```
 
 そして、valuesをyamlファイルとして書き出します。
 ```sh
-$ helm show values bitnami/thanos --version 12.10.1 > values_thanos-v12.10.1.yaml
+helm show values [CHART] --version [VERSION] > values.yaml
 ```
 
 ## 参考

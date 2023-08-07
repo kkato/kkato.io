@@ -9,4 +9,4 @@ KubernetesのCronJobが失敗したときにどうやってアラートをあげ
 
 
 ## CronJobとは?
-CronJobはcronフォーマットで指定した時間になるとJobを生成し、そのJobがPodを生成して処理を行います。
+CronJobはcronフォーマットで指定した時間になるとJobを生成し、さらにそのJobがPodを生成して処理を行います。
