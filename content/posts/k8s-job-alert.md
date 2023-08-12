@@ -21,7 +21,7 @@ kube-state-metricsではCronJobやJobの状態をメトリクスとして取得�
 - https://www.giffgaff.io/tech/monitoring-kubernetes-jobs
 
 
-## kube-state-metricsのメトリクス
+## どのメトリクスを使い監視するか
 CronJobはcronフォーマットで指定された時刻にJobを生成し、そのJobがPodを生成するという3層の親子構造になっています。
 また、CronJobとJobの関係は1対多で、JobとPodの関係は1対多になります。
 
