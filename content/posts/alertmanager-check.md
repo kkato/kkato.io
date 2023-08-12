@@ -6,6 +6,8 @@ draft: true
 
 # nginx
 
+https://qiita.com/YusukeIwaki/items/9b04337873cd6ba0a43a
+
 ```sh
 apiVersion: v1
 kind: ConfigMap
