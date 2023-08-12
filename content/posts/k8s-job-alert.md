@@ -75,7 +75,6 @@ kube_job_failed > 0
 
 
 CronJobの`failedJobsHistoryLimit`を設定するという方法も思いつきましたが、0にしてしまうとそもそもアラートが上がりません。
-CronJob
 - failedJobsHistoryLimit
     - 失敗したJobを指定個数分残しておける
     - デフォルトは1
