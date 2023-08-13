@@ -1,5 +1,5 @@
 ---
-title: "Alertmanagerの通知内容を確認する"
+title: "Alertmanagerのwebhookを確認する"
 date: 2023-08-13T13:11:42+09:00
 draft: false
 tags: ["kubernetes", "prometheus"]
