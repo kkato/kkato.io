@@ -1,5 +1,5 @@
 ---
-title: "Alertmanagerのwebhookを確認する"
+title: "Alertmanagerのwebhookを試してみる"
 date: 2023-08-13T13:11:42+09:00
 draft: false
 tags: ["kubernetes", "prometheus"]
@@ -8,7 +8,7 @@ tags: ["kubernetes", "prometheus"]
 Kubernetes上でAlertmanagerがちゃんと通知できるか、どんな内容が通知されているのか確認してみようと思いました。
 しかし、連携するためのSlackがなかったり、Emailを送信するにもメールサーバが必要だったりと、意外と気軽に試せないということがありました。
 
-なので、今回はwebhookの機能を使って確認してみようと思います。
+なので、今回はwebhookの機能を使ってそれらを確認してみようと思います。
 
 ## webhookとは?
 Alertmanagerのreceiverには以下が指定できます。
@@ -25,7 +25,7 @@ Alertmanagerのreceiverには以下が指定できます。
 - [Webex](https://www.webex.com/ja/index.html)
 
 Webhookとは特定のエンドポイントに対してHTTP POSTリクエストでアラートの情報を送信するというものです。
-外部サービスではないので、利用者自身でエンドポイントを用意し、利用者自身で後続の処理を実装する必要があります。
+外部サービスではないので、自分自身でエンドポイントを用意し、自分自身で後続の処理を実装する必要があります。
 
 例えば、以下のように設定します。
 ```
@@ -45,7 +45,7 @@ nginxを使って実現したいことは以下のとおりです。
 nginx.confの初期設定をベースにしていますが、そのままだとリクエスト内容を確認することができないので、設定を追加しました。
 `log_format`で`$request_body`を指定し、`/`にアクセスした時に`$request_body`がログとして標準出力に出るように設定しています。
 
-しかし、`$request_body`を有効化するには`proxy_pass`などの後続処理が必要になるみたいです。なので、`proxy_pass`で`/trash`というエンドポイントにリクエストを転送し、`/trash`で特に意味のない処理(1x1ピクセルのgifを返す)をしています。
+しかし、`$request_body`を有効化するには`proxy_pass`などの後続処理が必要になります。なので、`proxy_pass`で`/trash`というエンドポイントにリクエストを転送し、`/trash`で特に意味のない処理(1x1ピクセルのgifを返す)をしています。
 
 >The variable’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer.
 
@@ -102,7 +102,7 @@ http {
 }
 ```
 
-上記の設定をConfigMapとして作成し、NginxのPodに対してConfigMapをマウントしてあげます。`nginx-svc`というServiceも作成します。
+上記の設定をConfigMapとして作成し、nginxのPodに対してConfigMapをマウントしてあげます。`nginx-svc`というServiceも作成します。
 ```yaml
 apiVersion: v1
 kind: ConfigMap
