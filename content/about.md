@@ -5,16 +5,17 @@ hidemeta: true
 draft: false
 ---
 
-SIer勤務のITエンジニア
+Hi, my name is Ken! \
+Thank you for taking some interests in me.
 
-つよつよエンジニアを目指して勉強中
+### Work Experience
+- IT Specialist @ NTT data (2021 - Current)
 
-### 好きなこと
-- ボルダリング
-- テニス
-- サウナ
+### Education
+- M.S. Computer Science @ Gerogia Institute of Technology (2020 - 2022)
+- B.S. Physics @ Queen's University (2016 - 2020)
 
-### 興味のあること
+### Skill
 - Kubernetes
-- データベース (特にPostgreSQL, MySQL, TiDBなど)
+- PostgreSQL
 - Go
