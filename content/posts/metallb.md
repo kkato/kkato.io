@@ -2,7 +2,7 @@
 title: "MetalLB　入門"
 date: 2023-08-06T18:08:59+09:00
 draft: true
-tags: ["kubernetes"]
+tags: ["k8s"]
 ---
 
 LoadBalancerタイプのServiceは基本的にAWS, Azure, GCPなどのパブリッククラウドのみで使えます。

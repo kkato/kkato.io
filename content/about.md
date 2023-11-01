@@ -5,9 +5,6 @@ hidemeta: true
 draft: false
 ---
 
-Hi, my name is Ken! \
-Thank you for taking some interests in me.
-
 ### Work Experience
 - IT Specialist @ NTT data (2021 - Current)
 
