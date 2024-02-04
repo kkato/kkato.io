@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>raspberry pi on kkato.dev</title>
+    <link>https://kkato.dev/tags/raspberry-pi/</link>
+    <description>Recent content in raspberry pi on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 23 Apr 2023 16:13:42 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Raspberry Pi上にk8sクラスタを構築する</title>
+      <link>https://kkato.dev/posts/raspi-k8s/</link>
+      <pubDate>Sun, 23 Apr 2023 16:13:42 +0900</pubDate>
+      <guid>https://kkato.dev/posts/raspi-k8s/</guid>
+      <description>最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。 Control Planeノードx1 Workerノードx3の構成です。&#xA;準備したものは以下のとおりです。&#xA;アイテム 個数 Raspberry Pi 4 Model B / 4GB 4 Raspberry Pi PoE+ HAT 4 ケース 1 microSD 64GB 4 スイッチングハブ 1 LANケーブル 0.15m 4 LANケーブル 1m 1 SDカードリーダー 1 HDMI変換アダプター 1 OSの設定 OSのインストール 手元のPCはUbuntu 22.04 LTSなので、以下のコマンドでRaspberry Pi Imagerをインストールします。&#xA;$ sudo apt install rpi-imager そして、microSDカード4枚全てにUbuntu Server 22.10 (64-bit)を焼きます。&#xA;$ rpi-imager microSDカードを差し込み、ディスプレイ(micro HDMI)とキーボード(USB)を接続し、OSの初期設定を行います。初期ユーザー名とパスワードはubuntuです。パッケージを最新にしておきます。&#xA;$ sudo spy update $ sudo apt upgrade -y 新しくユーザを作成し、ユーザにsudo権限を付与します。sudoをパスワードなしでできるように追加の設定もします。&#xA;$ sudo adduser kkato $ sudo usermod -aG sudo kkato $ sudo visudo --- kkato ALL=NOPASSWD: ALL 固定IPの設定 OS側で固定IPを設定する方法もありますが、今回はルーター側で設定してみたいと思います。 まずは以下のコマンドを使って、MACアドレスを確認します。(以下だと、eth0のdc:a6:32:70:52:2aです。)</description>
+    </item>
+  </channel>
+</rss>

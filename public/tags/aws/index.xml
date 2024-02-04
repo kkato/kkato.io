@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>aws on kkato.dev</title>
+    <link>https://kkato.dev/tags/aws/</link>
+    <description>Recent content in aws on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 02 Aug 2023 13:11:46 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EC2のデフォルトユーザを削除する</title>
+      <link>https://kkato.dev/posts/ec2-user/</link>
+      <pubDate>Wed, 02 Aug 2023 13:11:46 +0900</pubDate>
+      <guid>https://kkato.dev/posts/ec2-user/</guid>
+      <description>AWSでEC2インスタンスを建てると、デフォルトで&amp;quot;ec2-user&amp;quot;という名前のユーザが作成されます。公開鍵認証なので高いセキュリティレベルが担保されており、ユーザ名が知られていても特に問題はないと思います。しかし、万が一を考えてデフォルトのec2-userを削除し、新しいユーザでアクセスできるように設定したいと思います。&#xA;ec2-userを削除するまでの流れ useraddコマンドを使い新しくユーザを追加します。追加したユーザにsudo権限を付与します。また、追加したユーザのパスワードも登録します。&#xA;ssh -i ~/.ssh/秘密鍵の名前 ec2-user@EC2インスタンスのパブリックIP sudo su - useradd -m ユーザ名 usermod -aG wheel ユーザ名 passwd ユーザ名 追加したユーザのホームディレクトリにauthorized_keys(公開鍵の情報)をコピーし、適切な権限を付与します。&#xA;mkdir /home/ユーザ名/.ssh cp /home/ec2-user/.ssh/authrized_keys /home/ユーザ名/.ssh chown -R ユーザ名:ユーザ名 /home/ユーザ名/.ssh chmod 700 /home/ユーザ名/.ssh chmod 600 /home/ユーザ名/.ssh/authorized_keys その後新しく追加したユーザで接続し直し、接続できることを確認したら、ec2-userを削除します。&#xA;exit ssh -i ~/.ssh/秘密鍵の名前 ユーザ名@EC2インスタンスのパブリックIP sudo userdel -r ec2-user </description>
+    </item>
+  </channel>
+</rss>

@@ -58,7 +58,10 @@ kube_job_failed > 0
     - 指定秒後にJobを削除できる
 
 
-CronJobの`failedJobsHistoryLimit`を設定するという方法も思いつきましたが、0にしてしまうとそもそもアラートが上がりません。
+CronJobの`failedJobsHistoryLimit`を設定するという方法も思いつきましたが、0にしてしまうとそもそもアラートが上がらないと思うので、こちらは1のままにしておきました。
 - failedJobsHistoryLimit
     - 失敗したJobを指定個数分残しておける
     - デフォルトは1
+
+## まとめ
+今回はkube-state-metricsを活用して、CronJobが失敗した時のアラートを設定しました。他にもっといい方法をご存知の方は教えていただけるとありがたいです。

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>idea on kkato.dev</title>
+    <link>https://kkato.dev/tags/idea/</link>
+    <description>Recent content in idea on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Apr 2023 18:05:06 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/idea/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ジョージア工科大学 OMSCSを振り返って</title>
+      <link>https://kkato.dev/posts/omscentral/</link>
+      <pubDate>Mon, 10 Apr 2023 18:05:06 +0900</pubDate>
+      <guid>https://kkato.dev/posts/omscentral/</guid>
+      <description>2020年8月にジョージア工科大学 コンピューターサイエンス修士課程(通称OMSCS)に入学し、2022年12月に卒業しました。今回は入学から卒業までを振り返ってみようと思います。&#xA;なぜOMSCSを始めたのか 実は途中でOMSAからOMSCSに編入していたりしますが、OMSCSを始めた主な目的は以下です。&#xA;専門的な知識を身につける 私は物理学の学士課程を卒業していますが、物理を学ぶと選択肢は広がるものの少し中途半端なんですよね。例えば、機械系に行きたいとすると機械工学の学生でいいじゃん、電子系に行きたいとすると電子工学の学生でいいじゃん、IT系に行きたいとすると情報系の学生でいいじゃん、となってしまいます。なので、物理学＋αでより専門的な知識を身につけて、今後のキャリアアップに役立てたいと考えました。&#xA;海外で就職する 実は私はカナダの大学で学士号を取得していますが、卒業当時の私は現地就職するだけの自信と実力がありませんでした。国際的に評価されている大学の修士号であれば、海外で就職するときもプラスに働くと思い、OMSCSを始めることにしました。&#xA;実際どうだったか 正直かなり大変でした。コロナで家にいる時間も多かったですが、平日の仕事終わりと週末は基本的に家でずっと勉強していました。遊びに誘われることもありましたが、毎回断っていたら誰からも誘われなくなりました笑&#xA;どれくらいの時間が必要かというと、前提知識があるかどうかにもよると思いますが、1コースにつき週10-20時間は必要だと思います。ちなみに私は基本的に1学期に2コース取っていたので、休む時間がほとんどありませんでした。&#xA;また、卒業には以下の条件があり、良い成績をとらないと卒業できないというプレッシャーがありました。&#xA;最初の12ヶ月でfundamental courseを最低2つ履修し、B以上の成績を収めなければならない 専門分野のコースは全てB以上の成績を収めなければならない 合計GPAが3.0/4.0以上でなければならない どんな授業を受けたのか OMSCSではSpecialization*1といって専門分野を決める必要があるのですが、私はComputing Systemsにしました。その理由としては配属された部署がデータベースや分散システムなどのミドルウェアを扱うところだったから、また低レイヤーの技術に興味があったからです。OMSCSでは10コース履修する必要がありますが、そのうち5, 6コースを自分の専門分野から履修しなければなりません(いわゆる必修科目)。&#xA;学期 受講したコース 難易度 作業量 Fall 2020 CSE6040 Computing for Data Anlysis 易しい 10時間/週 Fall 2020 ISYE6501 Introduction to Analytics Modeling 普通 15時間/週 Summer 2021 CS6300 Software Development Process 普通 10時間/週 Fall 2021 CS6250 Computer Networks 普通 10時間/週 Fall 2021 CS7646 Machine Learning for Trading 普通 15時間/週 Spring 2022 CS6035 Introduction to Information Security 普通 15時間/週 Spring 2022 CS6200 Introduction to Operating Systems 難しい 20時間/週 Summer 2022 CS6262 Network Security 普通 15時間/週 Fall 2022 CS6515 Introduction to Graduate Algorithms 難しい 15時間/週 Fall 2022 CS9903-O13 Quantum Computing 易しい 10時間/週 受講したコースについて少し紹介しようと思います。2023年現在、OMSCSでは61コース提供されており*2、定期的に追加・更新されます。また、OMSCSにはOMSCentral*3という非公式のレビューサイトがあるので、そちらも参考にしてみてください。</description>
+    </item>
+    <item>
+      <title>ジョージア工科大学 OMSCSへの出願方法</title>
+      <link>https://kkato.dev/posts/omscs/</link>
+      <pubDate>Tue, 21 Mar 2023 18:04:49 +0900</pubDate>
+      <guid>https://kkato.dev/posts/omscs/</guid>
+      <description>ジョージア工科大学 コンピューターサイエンス修士課程(通称OMSCS)の概要とその出願方法について紹介します。&#xA;OMSCSとは Online Master of Science in Computer Science (OMSCS)はアメリカの州立大学であるジョージア工科大学が提供しているプログラムになります。&#xA;このプログラムの特徴としては以下が挙げられます*1。&#xA;全てオンラインで完結すること 学費が安いこと オンキャンパスと同等の学位であること 近年、MOOCなどオンラインで取得できる学位プログラムは増えつつありますが、OMSCSは2014に開始され、オンラインの学位プログラムとしては先駆け的な存在です。また、OMSCSは学費が安いことを売りにしており、オバマ元大統領も言及しています*2。そして、OMSCSはオンラインの学位とオンキャンパスの学位を区別せず、同等の学位として扱います。卒業証書には&amp;quot;Master of Science in Computer Science&amp;quot;と記載されます。&#xA;実際に私が支払った金額を参考までに載せておきます。(Spring 2021は諸々の事情により、学期の途中から休学することにしました。)&#xA;学期 米ドル 日本円 Fall 2020 $1951 21万円 Spring 2021 $455 5万円 Summer 2021 $841 9万円 Fall 2021 $1381 16万円 Spring 2022 $1341 17万円 Summer 2022 $841 11万円 Fall 2022 $1187 17万円 合計 $8037 96万円 最近ではOMSCS以外にもOnline Master of Science in Analytics (OMSA)やOnline Master of Science in Cybersecurity (OMS Cybersecurity)などのプログラムが提供されています。</description>
+    </item>
+  </channel>
+</rss>

@@ -259,3 +259,6 @@ $ k logs nginx-6dcc55fd49-7kbpd
    "truncatedAlerts":0
 }
 ```
+
+## まとめ
+Alertmanagerのwebhookをnginxに連携して、アラートの内容をログから確認できるようにしてみました。

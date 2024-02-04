@@ -2,7 +2,7 @@
 title: "ジョージア工科大学 OMSCSへの出願方法"
 date: 2023-03-21T18:04:49+09:00
 draft: false
-tags: ["idea"]
+tags: ["omscs"]
 ---
 
 ジョージア工科大学 コンピューターサイエンス修士課程(通称OMSCS)の概要とその出願方法について紹介します。
@@ -88,9 +88,14 @@ goals as well as career plans. Include your reasons for choosing the
 College of Computing as opposed to other programs and/or other
 universities. Your space is limited to 4000 characters.
 
-合否は締切期限の2週間後くらいに発表されます。私の場合、OMSAで秋学期開始の時は4月10日で、OMSCSで春学期開始の時は8月26日でした。
+頑張って英語で書いて、英語ネイティブの友達に添削してもらいました。
+
+ちなみに合否は締切期限の2週間後くらいに発表されます。私の場合、OMSAで秋学期開始の時は4月10日で、OMSCSで春学期開始の時は8月26日でした。
 
 **合格した後は、公式の成績表と卒業証明書を大学からジョージア工科大学に送付してもらう必要があります。**
+
+## まとめ
+ジョージア工科大学より提供されているOMSCSについてご紹介しました。オンライン修士号のプログラムは増えつつありますが、OMSCSが1番最初に始めたということもあり、他のプログラムよりも人気だと思います。また、学費も他のプログラムに比べて低く抑えられていたり、提供されているコースもかなり多いので、個人的には1番おすすめです。もしOMSCSに興味があって、出願を考えている人の参考になれば幸いです。
 
 ## 参考
 *1 [Dr.David Joyner's Presentation](https://www.youtube.com/watch?v=2u2dQOVyen4&t=166s) \

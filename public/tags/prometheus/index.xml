@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prometheus on kkato.dev</title>
+    <link>https://kkato.dev/tags/prometheus/</link>
+    <description>Recent content in prometheus on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2023 13:11:42 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Alertmanagerのwebhookを試してみる</title>
+      <link>https://kkato.dev/posts/webhook-nginx/</link>
+      <pubDate>Sun, 13 Aug 2023 13:11:42 +0900</pubDate>
+      <guid>https://kkato.dev/posts/webhook-nginx/</guid>
+      <description>Kubernetes上でAlertmanagerがちゃんと通知できるか、どんな内容が通知されているのか確認してみようとすると、連携するためのSlackが必要であったり、Emailを送信するにもメールサーバが必要だったりと、意外と気軽に試せないということがありました。&#xA;なので、今回はwebhookの機能を使ってNginxにリクエストを飛ばし、リクエストの内容をログから確認してみようと思います。&#xA;webhookとは? Alertmanagerのreceiverには以下が指定できます。&#xA;Email Opesgenie PagerDuty Pushover Slack AWS SNS VictorOps Webhook Wechat Telegram Webex Webhookとは特定のエンドポイントに対してHTTP POSTリクエストでアラートの情報を送信するというものです。 外部サービスではないので、自分自身でエンドポイントを用意し、自分自身で後続の処理を実装する必要があります。&#xA;例えば、以下のように設定します。&#xA;receivers: - name: &amp;#34;nginx&amp;#34; webhook_configs: - url: &amp;#39;http://nginx-svc.default:8080/&amp;#39; webhookの連携先としてnginxを使う 今回はwebhookの連携先としてnginxを使用します。&#xA;nginxを使って実現したいことは以下のとおりです。&#xA;エンドポイントを用意する リクエスト内容を確認する nginx.confの初期設定をベースにしていますが、そのままだとリクエスト内容を確認することができないので、設定を追加しました。 log_formatで$request_bodyを指定し、/にアクセスした時に$request_bodyがログとして標準出力に出るように設定しています。&#xA;しかし、$request_bodyを有効化するにはproxy_passなどの後続処理が必要になります。なので、proxy_passで/trashというエンドポイントにリクエストを転送し、/trashで特に意味のない処理(1x1ピクセルのgifを返す)をしています。&#xA;The variable’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer.&#xA;http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body&#xA;user nginx; worker_processes auto; error_log /var/log/nginx/error.log notice; pid /var/run/nginx.</description>
+    </item>
+    <item>
+      <title>KubernetesのCronJobが失敗したときにアラートをあげる</title>
+      <link>https://kkato.dev/posts/k8s-job-alert/</link>
+      <pubDate>Tue, 08 Aug 2023 19:48:39 +0900</pubDate>
+      <guid>https://kkato.dev/posts/k8s-job-alert/</guid>
+      <description>CronJobは、指定したcronフォーマットに基づいて定期的にJobを実行するという機能です。 主にバックアップの取得やメール送信など、定期的な処理を実行する際に便利です。&#xA;一方で、CronJobが失敗した際にどのように検知すべきかについては、あまり情報がありませんでした。 なので、今回はそちらについて考えてみたいと思います。&#xA;kube-state-metricsを活用する kube-state-metricsとはKubernetesクラスタ内のリソースの状態をメトリクスとして提供してくれるというものです。 kube-state-metricsではCronJobやJobの状態をメトリクスとして取得することができます。 この方式採用している記事が多かったので、こちらで検討を進めてみたいと思います。&#xA;※記事&#xA;https://medium.com/@tristan_96324/prometheus-k8s-cronjob-alerts-94bee7b90511 https://www.giffgaff.io/tech/monitoring-kubernetes-jobs どのメトリクスを使い監視するか CronJobはcronフォーマットで指定された時刻にJobを生成し、そのJobがPodを生成するという3層の親子構造になっています。 また、CronJobとJobの関係は1対多で、JobとPodの関係は1対多になります。&#xA;Jobが完了するのはcompletions個のPodが正常終了した場合、もしくはbackoffLimit個のPodが異常終了した場合に限ります。&#xA;completions completions個のPodが成功すると、Jobが完了したとみなされる デフォルトは1 backoffLimit 失敗したと判断するまでの再試行回数で、この回数を超えるとJobは失敗とみなされる デフォルトは6 そして、アラートを上げたいのはJobが失敗した時です。言い換えると、backoffLimit個のPodが異常終了したときにアラートを上げるということになります。 何個のPodが異常終了したのか監視することも可能だと思いますが、ここではJobのステータスを監視するのが適切かと思います。&#xA;メトリクス 対応する項目 説明 kube_job_status_succeeded .status.succeeded Jobの管理下で正常終了したPodの数 kube_job_status_failed .status.failed Jobの管理下で異常終了したPodの数 kube_job_complete .status.conditions.type Jobが成功したかどうか kube_job_failed .status.conditions.type Jobが失敗したかどうか 参考: https://github.com/kubernetes/kube-state-metrics/blob/main/docs/job-metrics.md&#xA;Jobに関するメトリクスは複数ありますが、この中でも特にkube_job_failedを使ってアラートを上げるのが良さそうです。 以下の設定だと、Jobが失敗したときにアラートが上がります。&#xA;kube_job_failed &amp;gt; 0 アラートが発火し続けてしまう問題 失敗したJobは削除されずに残り続けるので、アラートが発火し続けてしまいます。 なので、JobのttlSecondsAfterFinishedを設定し、数分後にJobが削除されるようにします。&#xA;ttlSecondsAfterFinished 指定秒後にJobを削除できる CronJobのfailedJobsHistoryLimitを設定するという方法も思いつきましたが、0にしてしまうとそもそもアラートが上がりません。&#xA;failedJobsHistoryLimit 失敗したJobを指定個数分残しておける デフォルトは1 </description>
+    </item>
+  </channel>
+</rss>

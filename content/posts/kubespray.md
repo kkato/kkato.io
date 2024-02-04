@@ -198,6 +198,9 @@ nuc03   Ready    <none>          4m20s   v1.25.6
 nuc04   Ready    <none>          4m7s    v1.25.6
 ```
 
+## まとめ
+前回はkubeadmを使ってk8sクラスタを構築しましたが、今回はkubesprayを使ってk8sクラスタを構築してみました。kubeadmよりも簡単にk8sクラスタを構築できて、すごく便利でした。
+
 # 参考
 - [GitHub - kubernetes-sigs/kubespray: Deploy a Production Ready Kubernetes Cluster](https://github.com/kubernetes-sigs/kubespray)
 - [kubesprayを使ったKubernetesのインストール](https://kubernetes.io/ja/docs/setup/production-environment/tools/kubespray/)

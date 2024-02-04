@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on kkato.dev</title>
+    <link>https://kkato.dev/tags/</link>
+    <description>Recent content in Tags on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2023 13:11:42 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes</title>
+      <link>https://kkato.dev/tags/kubernetes/</link>
+      <pubDate>Sun, 13 Aug 2023 13:11:42 +0900</pubDate>
+      <guid>https://kkato.dev/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>prometheus</title>
+      <link>https://kkato.dev/tags/prometheus/</link>
+      <pubDate>Sun, 13 Aug 2023 13:11:42 +0900</pubDate>
+      <guid>https://kkato.dev/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>k8s</title>
+      <link>https://kkato.dev/tags/k8s/</link>
+      <pubDate>Tue, 08 Aug 2023 19:48:39 +0900</pubDate>
+      <guid>https://kkato.dev/tags/k8s/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>aws</title>
+      <link>https://kkato.dev/tags/aws/</link>
+      <pubDate>Wed, 02 Aug 2023 13:11:46 +0900</pubDate>
+      <guid>https://kkato.dev/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ec2</title>
+      <link>https://kkato.dev/tags/ec2/</link>
+      <pubDate>Wed, 02 Aug 2023 13:11:46 +0900</pubDate>
+      <guid>https://kkato.dev/tags/ec2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>linux</title>
+      <link>https://kkato.dev/tags/linux/</link>
+      <pubDate>Wed, 12 Jul 2023 21:23:52 +0900</pubDate>
+      <guid>https://kkato.dev/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>raspberry pi</title>
+      <link>https://kkato.dev/tags/raspberry-pi/</link>
+      <pubDate>Sun, 23 Apr 2023 16:13:42 +0900</pubDate>
+      <guid>https://kkato.dev/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>idea</title>
+      <link>https://kkato.dev/tags/idea/</link>
+      <pubDate>Mon, 10 Apr 2023 18:05:06 +0900</pubDate>
+      <guid>https://kkato.dev/tags/idea/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

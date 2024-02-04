@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on kkato.dev</title>
+    <link>https://kkato.dev/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 13 Aug 2023 13:11:42 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Alertmanagerのwebhookを試してみる</title>
+      <link>https://kkato.dev/posts/webhook-nginx/</link>
+      <pubDate>Sun, 13 Aug 2023 13:11:42 +0900</pubDate>
+      <guid>https://kkato.dev/posts/webhook-nginx/</guid>
+      <description>Kubernetes上でAlertmanagerがちゃんと通知できるか、どんな内容が通知されているのか確認してみようとすると、連携するためのSlackが必要であったり、Emailを送信するにもメールサーバが必要だったりと、意外と気軽に試せないということがありました。&#xA;なので、今回はwebhookの機能を使ってNginxにリクエストを飛ばし、リクエストの内容をログから確認してみようと思います。&#xA;webhookとは? Alertmanagerのreceiverには以下が指定できます。&#xA;Email Opesgenie PagerDuty Pushover Slack AWS SNS VictorOps Webhook Wechat Telegram Webex Webhookとは特定のエンドポイントに対してHTTP POSTリクエストでアラートの情報を送信するというものです。 外部サービスではないので、自分自身でエンドポイントを用意し、自分自身で後続の処理を実装する必要があります。&#xA;例えば、以下のように設定します。&#xA;receivers: - name: &amp;#34;nginx&amp;#34; webhook_configs: - url: &amp;#39;http://nginx-svc.default:8080/&amp;#39; webhookの連携先としてnginxを使う 今回はwebhookの連携先としてnginxを使用します。&#xA;nginxを使って実現したいことは以下のとおりです。&#xA;エンドポイントを用意する リクエスト内容を確認する nginx.confの初期設定をベースにしていますが、そのままだとリクエスト内容を確認することができないので、設定を追加しました。 log_formatで$request_bodyを指定し、/にアクセスした時に$request_bodyがログとして標準出力に出るように設定しています。&#xA;しかし、$request_bodyを有効化するにはproxy_passなどの後続処理が必要になります。なので、proxy_passで/trashというエンドポイントにリクエストを転送し、/trashで特に意味のない処理(1x1ピクセルのgifを返す)をしています。&#xA;The variable’s value is made available in locations processed by the proxy_pass, fastcgi_pass, uwsgi_pass, and scgi_pass directives when the request body was read to a memory buffer.&#xA;http://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_body&#xA;user nginx; worker_processes auto; error_log /var/log/nginx/error.log notice; pid /var/run/nginx.</description>
+    </item>
+  </channel>
+</rss>

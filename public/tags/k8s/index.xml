@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>k8s on kkato.dev</title>
+    <link>https://kkato.dev/tags/k8s/</link>
+    <description>Recent content in k8s on kkato.dev</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Aug 2023 19:48:39 +0900</lastBuildDate>
+    <atom:link href="https://kkato.dev/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KubernetesのCronJobが失敗したときにアラートをあげる</title>
+      <link>https://kkato.dev/posts/k8s-job-alert/</link>
+      <pubDate>Tue, 08 Aug 2023 19:48:39 +0900</pubDate>
+      <guid>https://kkato.dev/posts/k8s-job-alert/</guid>
+      <description>CronJobは、指定したcronフォーマットに基づいて定期的にJobを実行するという機能です。 主にバックアップの取得やメール送信など、定期的な処理を実行する際に便利です。&#xA;一方で、CronJobが失敗した際にどのように検知すべきかについては、あまり情報がありませんでした。 なので、今回はそちらについて考えてみたいと思います。&#xA;kube-state-metricsを活用する kube-state-metricsとはKubernetesクラスタ内のリソースの状態をメトリクスとして提供してくれるというものです。 kube-state-metricsではCronJobやJobの状態をメトリクスとして取得することができます。 この方式採用している記事が多かったので、こちらで検討を進めてみたいと思います。&#xA;※記事&#xA;https://medium.com/@tristan_96324/prometheus-k8s-cronjob-alerts-94bee7b90511 https://www.giffgaff.io/tech/monitoring-kubernetes-jobs どのメトリクスを使い監視するか CronJobはcronフォーマットで指定された時刻にJobを生成し、そのJobがPodを生成するという3層の親子構造になっています。 また、CronJobとJobの関係は1対多で、JobとPodの関係は1対多になります。&#xA;Jobが完了するのはcompletions個のPodが正常終了した場合、もしくはbackoffLimit個のPodが異常終了した場合に限ります。&#xA;completions completions個のPodが成功すると、Jobが完了したとみなされる デフォルトは1 backoffLimit 失敗したと判断するまでの再試行回数で、この回数を超えるとJobは失敗とみなされる デフォルトは6 そして、アラートを上げたいのはJobが失敗した時です。言い換えると、backoffLimit個のPodが異常終了したときにアラートを上げるということになります。 何個のPodが異常終了したのか監視することも可能だと思いますが、ここではJobのステータスを監視するのが適切かと思います。&#xA;メトリクス 対応する項目 説明 kube_job_status_succeeded .status.succeeded Jobの管理下で正常終了したPodの数 kube_job_status_failed .status.failed Jobの管理下で異常終了したPodの数 kube_job_complete .status.conditions.type Jobが成功したかどうか kube_job_failed .status.conditions.type Jobが失敗したかどうか 参考: https://github.com/kubernetes/kube-state-metrics/blob/main/docs/job-metrics.md&#xA;Jobに関するメトリクスは複数ありますが、この中でも特にkube_job_failedを使ってアラートを上げるのが良さそうです。 以下の設定だと、Jobが失敗したときにアラートが上がります。&#xA;kube_job_failed &amp;gt; 0 アラートが発火し続けてしまう問題 失敗したJobは削除されずに残り続けるので、アラートが発火し続けてしまいます。 なので、JobのttlSecondsAfterFinishedを設定し、数分後にJobが削除されるようにします。&#xA;ttlSecondsAfterFinished 指定秒後にJobを削除できる CronJobのfailedJobsHistoryLimitを設定するという方法も思いつきましたが、0にしてしまうとそもそもアラートが上がりません。&#xA;failedJobsHistoryLimit 失敗したJobを指定個数分残しておける デフォルトは1 </description>
+    </item>
+    <item>
+      <title>kubesprayでk8sクラスタを構築する</title>
+      <link>https://kkato.dev/posts/kubespray/</link>
+      <pubDate>Mon, 01 May 2023 10:07:31 +0900</pubDate>
+      <guid>https://kkato.dev/posts/kubespray/</guid>
+      <description>k8s構築ツールはいろいろありますが、公式ドキュメントでは以下が紹介されています。&#xA;学習環境 Minikube Kind プロダクション環境 kubeadm kops kubespray ※各ツールの違いについてはこちら&#xA;今回はその中でもkubesprayというツールを使ってk8sクラスタを構築してみようと思います。kubeadmは1台ずつインストールを実施するのに対し、kubesprayはAnsibleを使い、各ノードで一斉にインストールを実施します。なので、kubesprayは台数が多いときに便利です。&#xA;ちなみに、kubesprayは内部でkubeadmを使っているので、kubespray = kubeadm + Ansibleという感じです。また、kubesprayを使うと、コンテナランタイム(デフォルトはcontainerd)やPod間通信のネットワークプラグイン(デフォルトはcalico)などが自動でインストールされるので、非常に便利です。&#xA;構築 前提:&#xA;ベアメタル(Intel NUC11PAHi5)上に構築 Control Planex1台とWorkerx3台の4台構成 OSはRocky Linux9.1 ルーター側の設定で固定IPを割り当て 各ノードのスペックは以下 CPU メモリ ストレージ 4コア 16GB 500GB ssh公開認証の設定 手元のPCからパスワードなしでssh接続できるように公開鍵認証の設定をします。 ssh-keygenのパスワードには空文字を指定します。&#xA;kkato@bastion:~$ ssh-keygen kkato@bastion:~$ scp ~/.ssh/id_rsa.pub 192.168.10.xxx:~/ 公開鍵の情報を各ノードのauthorized_keysに追記します。&#xA;kkato@nuc01:~$ mkdir ~/.ssh kkato@nuc01:~$ chmod 700 /.ssh kkato@nuc01:~$ cat id_rsa.pub &amp;gt;&amp;gt; ~/.ssh/authorized_keys kkato@nuc01:~$ chmod 600 ~/.ssh/authorized_keys /etc/hostsの編集 手元のPCから各ノードへホスト名で接続できるように、/etc/hostsを編集します。&#xA;kkato@bastion:~$ cat /etc/hosts --- 192.168.10.121 nuc01 192.168.10.122 nuc02 192.168.10.123 nuc03 192.168.10.124 nuc04 ユーザーの設定 各ノードのユーザーがパスワードなしでsudo実行できるよう設定します。</description>
+    </item>
+    <item>
+      <title>Raspberry Pi上にk8sクラスタを構築する</title>
+      <link>https://kkato.dev/posts/raspi-k8s/</link>
+      <pubDate>Sun, 23 Apr 2023 16:13:42 +0900</pubDate>
+      <guid>https://kkato.dev/posts/raspi-k8s/</guid>
+      <description>最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。 Control Planeノードx1 Workerノードx3の構成です。&#xA;準備したものは以下のとおりです。&#xA;アイテム 個数 Raspberry Pi 4 Model B / 4GB 4 Raspberry Pi PoE+ HAT 4 ケース 1 microSD 64GB 4 スイッチングハブ 1 LANケーブル 0.15m 4 LANケーブル 1m 1 SDカードリーダー 1 HDMI変換アダプター 1 OSの設定 OSのインストール 手元のPCはUbuntu 22.04 LTSなので、以下のコマンドでRaspberry Pi Imagerをインストールします。&#xA;$ sudo apt install rpi-imager そして、microSDカード4枚全てにUbuntu Server 22.10 (64-bit)を焼きます。&#xA;$ rpi-imager microSDカードを差し込み、ディスプレイ(micro HDMI)とキーボード(USB)を接続し、OSの初期設定を行います。初期ユーザー名とパスワードはubuntuです。パッケージを最新にしておきます。&#xA;$ sudo spy update $ sudo apt upgrade -y 新しくユーザを作成し、ユーザにsudo権限を付与します。sudoをパスワードなしでできるように追加の設定もします。&#xA;$ sudo adduser kkato $ sudo usermod -aG sudo kkato $ sudo visudo --- kkato ALL=NOPASSWD: ALL 固定IPの設定 OS側で固定IPを設定する方法もありますが、今回はルーター側で設定してみたいと思います。 まずは以下のコマンドを使って、MACアドレスを確認します。(以下だと、eth0のdc:a6:32:70:52:2aです。)</description>
+    </item>
+  </channel>
+</rss>
