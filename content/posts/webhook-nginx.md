@@ -2,7 +2,7 @@
 title: "Alertmanagerのwebhookを試してみる"
 date: 2023-08-13T13:11:42+09:00
 draft: false
-tags: ["kubernetes", "prometheus"]
+tags: ["kubernetes", "alertmanager"]
 ---
 
 Kubernetes上でAlertmanagerがちゃんと通知できるか、どんな内容が通知されているのか確認してみようとすると、連携するためのSlackが必要であったり、Emailを送信するにもメールサーバが必要だったりと、意外と気軽に試せないということがありました。

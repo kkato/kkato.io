@@ -90,6 +90,8 @@ params:
       url: "https://github.com/kkato/"
     - name: linkedin
       url: "https://www.linkedin.com/in/ken-kato/"
+    - name: x
+      url: "https://twitter.com/kkato25"
 
   cover:
     hidden: true # hide everywhere but not in structured data
