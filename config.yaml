@@ -126,10 +126,6 @@ menu:
       name: Talks
       url: /talks/
       weight: 40
-    #- identifier: works
-    #  name: Works
-    #  url: https://kkato.github.io/
-    #  weight: 50
     - identifier: about
       name: About
       url: /about/

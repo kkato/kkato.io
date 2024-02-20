@@ -10,18 +10,22 @@ Control Planeノードx1 Workerノードx3の構成です。
 
 ![](/images/raspi/raspi_cluster.jpg)
 
+## 準備
+
 準備したものは以下のとおりです。
 | アイテム | 個数 |
 |---|---|
 | [Raspberry Pi 4 Model B / 4GB](https://www.switch-science.com/products/5680)  | 4 |
 | [Raspberry Pi PoE+ HAT](https://www.switch-science.com/products/7172?_pos=1&_sid=e013ece27&_ss=r) | 4 |
-| [ケース](https://www.amazon.co.jp/dp/B07TJ15YL1/ref=twister_B07TJZG2F2?_encoding=UTF8&th=1)  | 1 |
-| [microSD 64GB](https://www.amazon.co.jp/%E3%83%90%E3%83%83%E3%83%95%E3%82%A1%E3%83%AD%E3%83%BC-Nintendo-%E3%83%89%E3%83%A9%E3%82%A4%E3%83%96%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%80%E3%83%BC-%E3%83%87%E3%83%BC%E3%82%BF%E5%BE%A9%E6%97%A7%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E5%AF%BE%E5%BF%9C-RMSD-128U11HA/dp/B0937BHBQC/ref=sr_1_2?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=ZWQLD0ODN6Q1&keywords=SD%E3%82%AB%E3%83%BC%E3%83%89%2Bbuffalo&qid=1680933109&s=electronics&sprefix=sd%E3%82%AB%E3%83%BC%E3%83%89%2Bbuffalo%2Celectronics%2C208&sr=1-2&th=1) | 4 |
-| [スイッチングハブ](https://www.amazon.co.jp/%E3%80%90Amazon-co-jp%E9%99%90%E5%AE%9A%E3%80%91TP-Link-%E3%82%B9%E3%82%A4%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0%E3%83%8F%E3%83%96-1000Mbps-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%BF%E3%82%A4%E3%83%A0%E4%BF%9D%E8%A8%BC-TL-SG105V4-0/dp/B00A128S24/ref=sr_1_6?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1BI99DUS9HW2V&keywords=TP-link+%E3%82%B9%E3%82%A4%E3%83%83%E3%83%81&qid=1680933201&sprefix=tp-link+%E3%82%B9%E3%82%A4%E3%83%83%E3%83%81%2Caps%2C210&sr=8-6) | 1 |
-| [LANケーブル 0.15m](https://www.amazon.co.jp/%E3%80%902009%E5%B9%B4%E3%83%A2%E3%83%87%E3%83%AB%E3%80%91ELECOM-LAN%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB-%E3%80%90PlayStation-LD-GPA-BU1/dp/B07KSFTVJ7/ref=sr_1_8?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1V64PASGC7ZS3&keywords=LAN%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB&qid=1680933313&sprefix=lan%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%2Caps%2C230&sr=8-8&th=1) | 4 |
-| [LANケーブル 1m](https://www.amazon.co.jp/%E3%80%902009%E5%B9%B4%E3%83%A2%E3%83%87%E3%83%AB%E3%80%91ELECOM-LAN%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB-%E3%80%90PlayStation-LD-GPA-BU1/dp/B076J9RMBY/ref=sr_1_8?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1V64PASGC7ZS3&keywords=LAN%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB&qid=1680933313&sprefix=lan%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%2Caps%2C230&sr=8-8&th=1) | 1 |
-| [SDカードリーダー](https://www.amazon.co.jp/%E3%83%90%E3%83%83%E3%83%95%E3%82%A1%E3%83%AD%E3%83%BC-%E3%83%9D%E3%83%BC%E3%82%BF%E3%83%96%E3%83%AB%E3%82%AB%E3%83%BC%E3%83%89%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%80%90-microSDXC-microSDHC-BSCR125U3CBK/dp/B0BCDMPLX5/ref=sr_1_5?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=20QJ9IRPRRFYM&keywords=buffalo+sd%E3%82%AB%E3%83%BC%E3%83%89%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC&qid=1680933443&sprefix=buffalo+sd%E3%82%AB%E3%83%BC%E3%83%89%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC%2Caps%2C216&sr=8-5) | 1 |
-| [HDMI変換アダプター](https://www.amazon.co.jp/%E3%82%A8%E3%83%AC%E3%82%B3%E3%83%A0-%E5%A4%89%E6%8F%9B%E3%82%A2%E3%83%80%E3%83%97%E3%82%BF-%E3%83%A1%E3%82%B9-HDMI-Micro-AD-HDAD3BK/dp/B01017VGR2?th=1)| 1 |
+| [ケース](https://amzn.asia/d/8DQ2Vjn)  | 1 |
+| [microSD 64GB](https://amzn.asia/d/1a7lXpn) | 4 |
+| [スイッチングハブ](https://amzn.asia/d/6lrvPog) | 1 |
+| [LANケーブル 0.15m](https://amzn.asia/d/cSs0irO) | 4 |
+| [LANケーブル 1m](https://amzn.asia/d/0IejUmF) | 1 |
+| [SDカードリーダー](https://amzn.asia/d/4oTN3E9) | 1 |
+| [HDMI変換アダプター](https://amzn.asia/d/a8TZ1OH)| 1 |
+
+PoE(Power over Ethernet)+ HATを使うと、LANケーブルから電源供給できるのでとても便利です。今回はPoE+ HATを使っているので、スイッチングハブもPoE対応のものを購入しています。ラズパイのOSをSDカードにインストールする必要があるので、SDカードリーダーも購入しました。あとは、ディスプレイと繋ぐときにmicro HDMIに変換するためのアダプタも購入しました。
 
 ## OSの設定
 
