@@ -1,5 +1,5 @@
-baseURL: "https://kkato.dev/"
-title: kkato.dev
+baseURL: "https://kkato.io/"
+title: kkato.io
 paginate: 5
 theme: PaperMod
 
@@ -23,8 +23,8 @@ outputs:
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/Variables
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: kkato.dev
-  description: "kkato.dev"
+  title: kkato.io
+  description: "kkato.io"
   keywords: [Blog, Portfolio, PaperMod]
   author: Ken Kato # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
@@ -58,7 +58,7 @@ params:
     # safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "kkato.dev"
+    text: "kkato.io"
     # icon: /apple-touch-icon.png
     # iconHeight: 35
 
@@ -79,7 +79,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "kkato.dev"
+    Title: "kkato.io"
     Content: "Hi there \U0001F44B
 
     
