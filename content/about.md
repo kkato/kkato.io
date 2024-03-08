@@ -1,14 +1,22 @@
 ---
-title: "Ken Kato"
+title: "About"
 ShowBreadCrumbs: false
 hidemeta: true
 draft: false
 ---
 
-### Work Experience
-- Infrastructure Engineer @Wantedly (2024 - Current)
-- IT Specialist @NTT data (2021 - 2023)
+- Name: Ken Kato
+- Interests: Kubernetes, PostgreSQL, Golang
 
-### Education
-- M.S. Computer Science @Gerogia Institute of Technology (2020 - 2022)
-- B.S. Physics @Queen's University (2016 - 2020)
+## Experience
+| Period            | Position                          |
+|-------------------|-----------------------------------|
+| 2024/01 - Present | Infrastructure Engineer @Wantedly |
+| 2021/01 - 2024/12 | IT Specialist @NTT data           |
+
+## Talks
+| Time    | Event/Location                                | Title                                                                                                              |
+|---------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| 2023/07 | Kubernetes Novice Tokyo #26                   | [Prometheus Operator入門](https://www.slideshare.net/nttdata-tech/prometheus-operator-k8s-novice-tokyo-26-nttdata) |
+| 2022/12 | 第37回PostgreSQLアンカンファレンス@オンライン | [pg_walinspectについて調べてみた！](https://www.slideshare.net/nttdata-tech/pgwalinspect-pgunconf37-nttdata)       |
+| 2022/07 | 第34回PostgreSQLアンカンファレンス@オンライン | [CloudnativePGを動かしてみた！](https://www.slideshare.net/nttdata-tech/cloud-native-postgres-pgunconf34-nttdata)  |
