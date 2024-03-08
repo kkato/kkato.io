@@ -12,7 +12,7 @@ draft: false
 | Period            | Position                          |
 |-------------------|-----------------------------------|
 | 2024/01 - Present | Infrastructure Engineer @Wantedly |
-| 2021/01 - 2024/12 | IT Specialist @NTT data           |
+| 2021/01 - 2023/12 | IT Specialist @NTT data           |
 
 ## Talks
 | Time    | Event                                         | Title                                                                                                              |
