@@ -15,7 +15,7 @@ draft: false
 | 2021/01 - 2024/12 | IT Specialist @NTT data           |
 
 ## Talks
-| Time    | Event/Location                                | Title                                                                                                              |
+| Time    | Event                                         | Title                                                                                                              |
 |---------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | 2023/07 | Kubernetes Novice Tokyo #26                   | [Prometheus Operator入門](https://www.slideshare.net/nttdata-tech/prometheus-operator-k8s-novice-tokyo-26-nttdata) |
 | 2022/12 | 第37回PostgreSQLアンカンファレンス@オンライン | [pg_walinspectについて調べてみた！](https://www.slideshare.net/nttdata-tech/pgwalinspect-pgunconf37-nttdata)       |
