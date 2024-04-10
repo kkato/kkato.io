@@ -7,6 +7,7 @@ draft: false
 
 - Name: Ken Kato
 - Interests: Kubernetes, PostgreSQL, Golang
+- Hobbies: Bouldering
 
 ## Experience
 | Period            | Position                          |
