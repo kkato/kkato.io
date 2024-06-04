@@ -8,7 +8,7 @@ tags: ["kubernetes", "raspberry pi"]
 最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。
 Control Planeノードx1 Workerノードx3の構成です。
 
-![](/images/raspi/raspi_cluster.jpg)
+![](/images/raspi/raspi-cluster.jpg)
 
 ## 準備
 
@@ -39,7 +39,7 @@ $ sudo apt install rpi-imager
 ```
 $ rpi-imager
 ```
-![](/images/raspi/raspi_imager.png)
+![](/images/raspi/raspi-imager.png)
 
 microSDカードを差し込み、ディスプレイ(micro HDMI)とキーボード(USB)を接続し、OSの初期設定を行います。初期ユーザー名とパスワードはubuntuです。パッケージを最新にしておきます。
 ```sh
@@ -111,12 +111,12 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
-22/tcp                     ALLOW       Anywhere  
-6443/tcp                   ALLOW       Anywhere                  
-2379:2380/tcp              ALLOW       Anywhere                  
-10250/tcp                  ALLOW       Anywhere                  
-10259/tcp                  ALLOW       Anywhere                  
-10257/tcp                  ALLOW       Anywhere                                  
+22/tcp                     ALLOW       Anywhere
+6443/tcp                   ALLOW       Anywhere
+2379:2380/tcp              ALLOW       Anywhere
+10250/tcp                  ALLOW       Anywhere
+10259/tcp                  ALLOW       Anywhere
+10257/tcp                  ALLOW       Anywhere
 ```
 
 続いて各Workerノードのポートを開放します。
@@ -136,8 +136,8 @@ Status: active
 To                         Action      From
 --                         ------      ----
 22/tcp                     ALLOW       Anywhere
-10250/tcp                  ALLOW       Anywhere                  
-30000:32767/tcp            ALLOW       Anywhere                  
+10250/tcp                  ALLOW       Anywhere
+30000:32767/tcp            ALLOW       Anywhere
 ```
 
 ### コンテナランタイムのインストール
