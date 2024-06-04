@@ -21,10 +21,10 @@ scp ~/id_rsa.pub username@server:~/
 接続先のサーバーで公開鍵の情報をauthorized_keysに登録し、適切な権限を設定します。
 
 ```sh
-mkdir .ssh
-chmod 700 .ssh
+mkdir ~/.ssh
+chmod 700 ~/.ssh
 cat id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 600 authorized_keys
+chmod 600 ~/.ssh/authorized_keys
  ```
 
 公開鍵認証を有効化し、パスワード認証を無効化します。
