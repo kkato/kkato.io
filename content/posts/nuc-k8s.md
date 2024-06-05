@@ -1,7 +1,7 @@
 ---
 title: "NUC上にk8sクラスタを構築する"
 date: 2024-06-05T21:20:47+09:00
-draft: true
+draft: false
 tags: ["kubernetes"]
 ---
 
