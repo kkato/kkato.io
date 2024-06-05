@@ -23,7 +23,7 @@ k8s構築ツールはいろいろありますが、公式ドキュメントで�
 
 ## 構築
 
-前提: 
+前提:
 - ベアメタル(Intel NUC11PAHi5)上に構築
 - Control Planex1台とWorkerx3台の4台構成
 - OSはRocky Linux9.1
@@ -78,7 +78,7 @@ kkato@nuc01:~$ sudo systemctl status firewalld
 ```
 
 ### kubesprayのダウンロード
-kubesprayのgitリポジトリをクローンし、最新バージョンのブランにに移動します。
+kubesprayのgitリポジトリをクローンし、最新バージョンのブランチに移動します。
 ```sh
 kkato@bastion:~$ git clone https://github.com/kubernetes-sigs/kubespray.git
 kkato@bastion:~$ cd kubespray
@@ -104,42 +104,42 @@ kkato@bastion:~/kubespray$ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 co
 ```sh
 kkato@bastion:~/kubespray$ cat inventory/mycluster/hosts.yml
 ---
-all:                                                                            
-  hosts:                                                                        
-    nuc01:                                                             
-      ansible_host: 192.168.10.121                                              
-      ip: 192.168.10.121                                                        
-      access_ip: 192.168.10.121                                                 
-    nuc02:                                                                   
-      ansible_host: 192.168.10.122                                              
-      ip: 192.168.10.122                                                        
-      access_ip: 192.168.10.122                                                 
-    nuc03:                                                                   
-      ansible_host: 192.168.10.123                                              
-      ip: 192.168.10.123                                                        
-      access_ip: 192.168.10.123                                                 
-    nuc04:                                                                   
-      ansible_host: 192.168.10.124                                              
-      ip: 192.168.10.124                                                        
-      access_ip: 192.168.10.124                                                 
-  children:                                                                     
-    kube_control_plane:                                                         
-      hosts:                                                                    
-        nuc01:                                                         
-    kube_node:                                                                  
-      hosts:                                                                    
-        nuc02:                                                               
-        nuc03:                                                               
-        nuc04:                                                               
-    etcd:                                                                       
-      hosts:                                                                    
-        nuc01:                                                         
-    k8s_cluster:                                                                
-      children:                                                                 
-        kube_control_plane:                                                     
-        kube_node:                                                              
-    calico_rr:                                                                  
-      hosts: {}  
+all:
+  hosts:
+    nuc01:
+      ansible_host: 192.168.10.121
+      ip: 192.168.10.121
+      access_ip: 192.168.10.121
+    nuc02:
+      ansible_host: 192.168.10.122
+      ip: 192.168.10.122
+      access_ip: 192.168.10.122
+    nuc03:
+      ansible_host: 192.168.10.123
+      ip: 192.168.10.123
+      access_ip: 192.168.10.123
+    nuc04:
+      ansible_host: 192.168.10.124
+      ip: 192.168.10.124
+      access_ip: 192.168.10.124
+  children:
+    kube_control_plane:
+      hosts:
+        nuc01:
+    kube_node:
+      hosts:
+        nuc02:
+        nuc03:
+        nuc04:
+    etcd:
+      hosts:
+        nuc01:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
 ```
 
 `inventory/mycluster/group_vars/all/all.yml`や`inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml`のパラメータを確認・変更します。
@@ -163,10 +163,10 @@ kubesprayを実行し、`failed=0`になっていることを確認します。
 kkato@bastion:~/kubespray$ ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 ---
 PLAY RECAP ************************************************************************************************************************************************
-localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-nuc01                      : ok=727  changed=67   unreachable=0    failed=0    skipped=1236 rescued=0    ignored=7   
-nuc02                      : ok=506  changed=34   unreachable=0    failed=0    skipped=755  rescued=0    ignored=1   
-nuc03                      : ok=506  changed=34   unreachable=0    failed=0    skipped=754  rescued=0    ignored=1   
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+nuc01                      : ok=727  changed=67   unreachable=0    failed=0    skipped=1236 rescued=0    ignored=7
+nuc02                      : ok=506  changed=34   unreachable=0    failed=0    skipped=755  rescued=0    ignored=1
+nuc03                      : ok=506  changed=34   unreachable=0    failed=0    skipped=754  rescued=0    ignored=1
 nuc04                      : ok=506  changed=34   unreachable=0    failed=0    skipped=754  rescued=0    ignored=1
 ```
 
@@ -190,7 +190,7 @@ kkato@bastion:~$ echo 'complete -F __start_kubectl k' >> ~/.bashrc
 ### 動作確認
 kubectlコマンドを実行すると、先程設定したノードが認識されていることがわかります。
 ```sh
-kkato@bastion:~$ k get nodes 
+kkato@bastion:~$ k get nodes
 NAME    STATUS   ROLES           AGE     VERSION
 nuc01   Ready    control-plane   5m23s   v1.25.6
 nuc02   Ready    <none>          4m8s    v1.25.6
