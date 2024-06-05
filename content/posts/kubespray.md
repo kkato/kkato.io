@@ -66,7 +66,7 @@ kkato@bastion:~$ cat /etc/hosts
 ```sh
 kkato@nuc01:~$ sudo visudo
 ---
-kkato   NOPASSWD:ALL
+kkato   ALL=NOPASSWD:ALL
 ```
 
 ### Firewallの無効化
@@ -83,7 +83,7 @@ kubesprayのgitリポジトリをクローンし、最新バージョンのブ�
 kkato@bastion:~$ git clone https://github.com/kubernetes-sigs/kubespray.git
 kkato@bastion:~$ cd kubespray
 kkato@bastion:~/kubespray$ git branch -a
-kkato@bastion:~/kubespray$ git checkout remotes/origin/release-2.21
+kkato@bastion:~/kubespray$ git switch remotes/origin/release-2.21 --detach
 ```
 
 ### 必要なパッケージのインストール
