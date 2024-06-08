@@ -47,6 +47,7 @@ params:
   hideSummary: false
   showtoc: false
   tocopen: false
+  enableEmoji: true
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -82,7 +83,7 @@ params:
     Title: "kkato.io"
     Content: "Hi there \U0001F44B
 
-    
+
     Welcome to my website!"
 
   socialIcons:
