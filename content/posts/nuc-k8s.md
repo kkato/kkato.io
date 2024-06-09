@@ -162,6 +162,15 @@ sudo systemctl enable --now kubelet
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
+### Workerノードのデプロイ
+
+`kubeadm join`コマンドを使って、Workerノードをデプロイします。
+
+```
+sudo kubeadm join 192.168.10.121:6443 --token bccqut.hxu0wkyo2y04i88c \
+	--discovery-token-ca-cert-hash sha256:b8db95c90e2d485ac499efb266aef624b464770cc89ff74b8a041fc0a2bab0b9
+```
+
 ### kubectlのインストール
 
 先にkubectlをインストールします。
@@ -207,15 +216,6 @@ CNIプラグインであるFlannelをインストールします。
 
 ```console
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
-```
-
-### Workerノードのデプロイ
-
-`kubeadm join`コマンドを使って、Workerノードをデプロイします。
-
-```
-kubeadm join 192.168.10.121:6443 --token bccqut.hxu0wkyo2y04i88c \
-	--discovery-token-ca-cert-hash sha256:b8db95c90e2d485ac499efb266aef624b464770cc89ff74b8a041fc0a2bab0b9
 ```
 
 ### まとめ
