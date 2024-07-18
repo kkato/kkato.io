@@ -1,5 +1,5 @@
 ---
-title: "2024 Books"
+title: "2024年に読んだ本"
 date: 2024-06-30T23:35:01+09:00
 draft: true
 tags: ["books"]
