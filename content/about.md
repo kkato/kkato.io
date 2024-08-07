@@ -1,11 +1,9 @@
 ---
-title: "About"
+title: "Ken Kato"
 ShowBreadCrumbs: false
 hidemeta: true
 draft: false
 ---
-
-- Name: Ken Kato
 
 I am an infrastructure engineer with 3+ years of experience, specializing in Kubernetes, PostgreSQL, AWS, and Terraform. My work involves system upgrades, monitoring, troubleshooting, and cost management for SaaS. In my spare time, I enjoy bouldering.
 
