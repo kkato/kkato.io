@@ -6,14 +6,20 @@ draft: false
 ---
 
 - Name: Ken Kato
-- Interests: Kubernetes, PostgreSQL, Golang
-- Hobbies: Bouldering
+
+I am an infrastructure engineer with 3+ years of experience, specializing in Kubernetes, PostgreSQL, AWS, and Terraform. My work involves system upgrades, monitoring, troubleshooting, and cost management for SaaS. In my spare time, I enjoy bouldering.
 
 ## Experience
 | Period            | Position                          |
 |-------------------|-----------------------------------|
 | 2024/01 - Present | Infrastructure Engineer @Wantedly |
 | 2021/01 - 2023/12 | IT Specialist @NTT data           |
+
+## Education
+| Period            | Degree                                                                 |
+|-------------------|------------------------------------------------------------------------|
+| 2020/08 - 2022/12 | Master of Science in Computer Science @Georgia Institute of Technology |
+| 2016/09 - 2020/06 | Bachelor of Science in Physics @Queen's University                     |
 
 ## Talks
 | Time    | Event                                         | Title                                                                                                              |
