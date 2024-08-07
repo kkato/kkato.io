@@ -10,14 +10,14 @@ I am an infrastructure engineer with 3+ years of experience, specializing in Kub
 ## Experience
 | Period            | Position                          |
 |-------------------|-----------------------------------|
-| 2024/01 - Present | Infrastructure Engineer @Wantedly |
-| 2021/01 - 2023/12 | IT Specialist @NTT data           |
+| 2024/01 - Present | Infrastructure Engineer @ Wantedly |
+| 2021/01 - 2023/12 | IT Specialist @ NTT data           |
 
 ## Education
 | Period            | Degree                                                                 |
 |-------------------|------------------------------------------------------------------------|
-| 2020/08 - 2022/12 | MSc in Computer Science @Georgia Institute of Technology |
-| 2016/09 - 2020/06 | BSc in Physics @Queen's University                     |
+| 2020/08 - 2022/12 | MSc in Computer Science @ Georgia Institute of Technology |
+| 2016/09 - 2020/06 | BSc in Physics @ Queen's University                     |
 
 ## Talks
 | Time    | Event                                         | Title                                                                                                              |
