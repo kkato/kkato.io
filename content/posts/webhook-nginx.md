@@ -2,7 +2,6 @@
 title: "Alertmanagerのwebhookを試してみる"
 date: 2023-08-13T13:11:42+09:00
 draft: false
-tags: ["kubernetes", "alertmanager"]
 ---
 
 Kubernetes上でAlertmanagerがちゃんと通知できるか、どんな内容が通知されているのか確認してみようとすると、連携するためのSlackが必要であったり、Emailを送信するにもメールサーバが必要だったりと、意外と気軽に試せないということがありました。
@@ -149,7 +148,7 @@ data:
             }
         }
         # ----------------------------------------------
-        
+
         sendfile        on;
         #tcp_nopush     on;
 
@@ -210,7 +209,7 @@ spec:
 先程例にあったように、`nginx-svc`をエンドポイントしてAlertmanagerのWebhookを設定します。
 そうすると、以下のようにリクエストボディとして送られたアラートの情報を確認することができます。(本来は以下のようにフォーマットされないです。ブログ用にフォーマットしています。)
 ```sh
-$ k logs nginx-6dcc55fd49-7kbpd 
+$ k logs nginx-6dcc55fd49-7kbpd
 ...(略)...
 {
    "receiver":"nginx",

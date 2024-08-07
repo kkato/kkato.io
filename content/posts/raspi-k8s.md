@@ -2,7 +2,6 @@
 title: "Raspberry Pi上にk8sクラスタを構築する"
 date: 2023-04-23T16:13:42+09:00
 draft: false
-tags: ["kubernetes", "raspberry pi"]
 ---
 
 最近ラズパイを手に入れたので、kubeadmを使ってk8sクラスタを組んでみたいと思います。

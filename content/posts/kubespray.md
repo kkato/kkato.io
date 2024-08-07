@@ -2,7 +2,6 @@
 title: "kubesprayでk8sクラスタを構築する"
 date: 2023-05-01T10:07:31+09:00
 draft: false
-tags: ["kubernetes"]
 ---
 
 k8s構築ツールはいろいろありますが、公式ドキュメントでは以下が紹介されています。

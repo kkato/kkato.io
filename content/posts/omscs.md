@@ -2,7 +2,6 @@
 title: "ジョージア工科大学 OMSCSへの出願方法"
 date: 2023-03-21T18:04:49+09:00
 draft: false
-tags: ["omscs"]
 ---
 
 ジョージア工科大学 コンピューターサイエンス修士課程(通称OMSCS)の概要とその出願方法について紹介します。
@@ -102,6 +101,6 @@ universities. Your space is limited to 4000 characters.
 *2 [User Clip: Obama OMSCS](https://www.c-span.org/video/?c4596968/user-clip-obama-omscs) \
 *3 [Admission Criteria](https://omscs.gatech.edu/program-info/admission-criteria) \
 *4 [Application Deadlines, Process and Requirements](https://omscs.gatech.edu/program-info/application-deadlines-process-requirements) \
-*5 TOEFL/IELTSのスコアに関して記載されているページ: 
+*5 TOEFL/IELTSのスコアに関して記載されているページ:
 * [Computer Science(Online)](https://grad.gatech.edu/degree-programs/computer-science-online)
-* [English Proficiency](https://grad.gatech.edu/english-proficiency) 
+* [English Proficiency](https://grad.gatech.edu/english-proficiency)

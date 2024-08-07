@@ -2,7 +2,6 @@
 title: "KubernetesのCronJobが失敗したときにアラートをあげる"
 date: 2023-08-08T19:48:39+09:00
 draft: false
-tags: ["kubernetes", "alertmanager"]
 ---
 
 CronJobは、指定したcronフォーマットに基づいて定期的にJobを実行するという機能です。
