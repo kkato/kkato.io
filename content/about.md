@@ -20,7 +20,7 @@ I am an infrastructure engineer with 3+ years of experience, specializing in Kub
 | 2016/09 - 2020/06 | BSc in Physics @ Queen's University                     |
 
 ## Talks
-| Time    | Event                                         | Title                                                                                                              |
+| Date    | Event                                         | Title                                                                                                              |
 |---------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | 2024/07 | yabaibuki.dev #1 | [DNSルックアップの回数制限でハマった話](https://speakerdeck.com/kkato1/dnsrutukuatupunohui-shu-zhi-xian-dehamatutahua-73091dc2-6185-46e8-b9e2-3f413db036a3) |
 | 2024/05 | Kubernetes Novice Tokyo #31 | [入社後初めてのタスクでk8sアップグレードした話](https://speakerdeck.com/kkato1/ru-she-hou-chu-metenotasukutek8satuhukuretositahua)
