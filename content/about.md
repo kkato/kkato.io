@@ -11,7 +11,7 @@ I am an infrastructure engineer with 3+ years of experience, specializing in Kub
 | Period            | Position                          |
 |-------------------|-----------------------------------|
 | 2024/01 - Present | Infrastructure Engineer @ Wantedly |
-| 2021/01 - 2023/12 | Database Engineer @ NTT data           |
+| 2021/01 - 2023/12 | Database Engineer @ NTT Data           |
 
 ## Education
 | Period            | Degree                                                                 |
