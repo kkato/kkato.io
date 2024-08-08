@@ -8,7 +8,7 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: G-LN8D5NDXJ6
+googleAnalytics: G-X8460KTHFP
 
 minify:
   disableXML: true
