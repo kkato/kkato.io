@@ -5,7 +5,7 @@ hidemeta: true
 draft: false
 ---
 
-I am an infrastructure engineer with 3+ years of experience, specializing in Kubernetes, PostgreSQL, AWS, and Terraform. My work involves system upgrades, monitoring, troubleshooting, and cost management for SaaS. In my spare time, I enjoy bouldering.
+I am an infrastructure engineer with 3+ years of experience, specializing in Kubernetes, PostgreSQL, AWS, and Terraform. My work involves system upgrades, improvements in monitoring, troubleshooting, and cost management for SaaS. In my spare time, I enjoy bouldering.
 
 ## Experience
 | Period            | Position                          |
